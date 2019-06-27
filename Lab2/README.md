@@ -78,7 +78,7 @@ Lab1ではソースコードとbuidler imageを合体させてコンテナイメ
 1. 自身用の新規プロジェクトを作成します  **(例: user01a-jenkins)**
 
     ```
-    $ oc project user01a-jenkins (<== ご自身のプロジェクト名)
+    $ oc new-project user01a-jenkins (<== ご自身のプロジェクト名)
     $ oc project
     Using project "user01a-jenkins" on server XXXXXXX
     
