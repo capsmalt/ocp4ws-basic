@@ -1,5 +1,5 @@
 Lab1. OCP4の構築とコンテナビルド&デプロイ では以下の内容実施します。
-- OCP4クラスターの構築
+- OCP4クラスターの構築 (本日は実施しません。クラスターは構築済です)
 - OCP4 コンソールツアー
 - コンテナイメージのビルドとデプロイ
 
@@ -63,9 +63,13 @@ IPIを使用してK8s(OCP)クラスターを構築します。
     - ファイルサーバー(https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/) から以下の2つを取得できます
         - **openshift-install**
           - OCPをインストールするためのCLI (Mac/Linux用あり)
+            - Mac: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-install-mac-4.1.3.tar.gz
+            - Linux: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-install-linux-4.1.3.tar.gz
         - **oc**
           - OCPを制御するためのCLI (Mac/Linux/Windows用あり)
-          
+            - Mac: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac-4.1.3.tar.gz
+            - Linux: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux-4.1.3.tar.gz
+            - Windows: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-windows-4.1.3.zip
     >Tips:
     >
     >ocコマンドやopenshift-installコマンドは，/usr/local/binに入れずに，直下のディレクトリで実行しても構いません。ocコマンドは頻繁に使用するため今回はパスを通しておくことをおすすめします。
