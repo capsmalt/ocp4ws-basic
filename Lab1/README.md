@@ -21,21 +21,6 @@ OpenShift4クラスターをAWS上に構築し，OCP4コンソールやコマン
 3. [コンテナイメージのビルドとデプロイ](3_ocp4-build-deploy.md)
 
 ## References
-
-
-# OCP4 コンソールツアー
-IPIで構成されたAWSリソースや，OCP4コンソールを確認します。
-
-1. ブラウザで **各自のOCPコンソール** にログインします
-
-    各自のOCPコンソールログイン情報を確認してください ==> http://bit.ly/ocp4ws-memo
-
-    >
-    >例: "user01a" を使っている場合:
-    >
-    >OCPコンソール: "https://console-openshift-console.apps.user01.ocp41.nosue.mobi"
-    >
-    >ユーザー名: "user01a"，パスワード: "ocpuser"
     
 # コンテナイメージのビルドとデプロイ
 OpenShiftでは，いくつかの方法でアプリケーションをクラスター上にデプロイすることができます。
