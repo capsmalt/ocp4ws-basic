@@ -62,13 +62,13 @@ Password: "<User_PW>" を入力
 >
 >
 >例) 「OpenShift_API」へのログイン情報
-> - `<OpenShift_API>`: **https://api.group0-ocp4ws-basic.capsmalt.com:6443**
+> - `<OpenShift_API>`: **https://api.group00-ocp4ws-basic.capsmalt.org:6443**
 > - `<User_ID>`: **User00**
 > - `<User_PW>`: **ocppass**
 >
 >実行例) 
 >```
->$ oc login https://api.group0-ocp4ws-basic.capsmalt.com:6443  
+>$ oc login https://api.group00-ocp4ws-basic.capsmalt.org:6443  
 >Username: User00
 >Password: ocppass
 >```
@@ -78,12 +78,12 @@ Password: "<User_PW>" を入力
 
 >**注意: ワークショップ参加者の方は，必ず自身に割当てられた <OpenShift_Console>，<User_ID>，<User_PW> を使用してください。**  
 >例) 「OpenShift4コンソール」のログイン情報
-> - `<OpenShift_Console>`: **https://console-openshift-console.apps.group0-ocp4ws-basic.capsmalt.com**
+> - `<OpenShift_Console>`: **https://console-openshift-console.apps.group00-ocp4ws-basic.capsmalt.org**
 > - `<User_ID>`: **User00**
 > - `<User_PW>`: **ocppass**
 >
 >実行例)
-> - ブラウザで https://console-openshift-console.apps.group1-ocp4ws-basic.capsmalt.com にアクセス
+> - ブラウザで https://console-openshift-console.apps.group00-ocp4ws-basic.capsmalt.org にアクセス
 >   - capsmalt's group を選択
 >   - User00 / ocppass を入力してログイン
 
