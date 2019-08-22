@@ -85,6 +85,14 @@
 >   - capsmalt's group を選択
 >   - user00 / ocppass を入力してログイン
 
+Privacy Errorが出た場合は，[Advanced] > [Proceed to oauth-openshift.apps.group00-ocp4ws-basic.capsmalt.org (unsafe)] のように選択して進めてください。
+
+![](images/ocp4-console-login-error-1.png)
+
+![](images/ocp4-console-login-error-2.png)
+
+[capsmalt's group] を選択し，ログイン情報を入力してコンソールにログインします。
+
 ![](images/ocp4-console-login-group.png)
 
 ![](images/ocp4-console-login-user-pw.png)
