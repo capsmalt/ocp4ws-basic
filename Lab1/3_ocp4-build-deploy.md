@@ -8,23 +8,21 @@ OpenShiftでは，いくつかの方法でアプリケーションをクラス�
 - ソースコードとDockerfileを使ってビルド&デプロイする方法
 
 ### 3-1-2. 事前準備
-- ocコマンド
+- For Self-handson
+  - OpenShift Container Platform 4.Xクラスター環境
+  - ocコマンドのセットアップ
+  - system:adminの権限
+- For Workshop参加者
+  - 踏み台サーバー(Bastion Server)へのアクセス情報
+  - OpenShift4クラスターへのアクセス情報
+
+**以降の手順は，Workshop参加者を対象とした内容で記載しています。**  
+**Self-handsonとして実施される方は，適宜ご自身の環境情報に読み替えて実施ください。**
 
 ## 3-2. OCP4コンソールへのログイン
-1. ブラウザを立ち上げて **OCPコンソール** に接続します
+ブラウザを立ち上げて **OCPコンソール** に接続します。
 
-    各自のOCPコンソールログイン情報を確認してください ==> http://bit.ly/ocp4ws-memo
-    
-   ![](images/console_login_capsmalt.png)
-
-    >Tips:
-    >
-    >もし以下図のようなエラーが出て場合は例外追加を行ってください。
-    >
-    >![](images/console_login_error_1.png)
-    >
-    >![](images/console_login_error_2.png)
-
+>ログイン方法を再確認したい場合は，[OCP4クラスターへのログインと動作確認](2_ocp4-tour.md) または，[ブラウザからOCP4コンソールへのログイン](2_ocp4-tour.md#2-2-2-%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%8B%E3%82%89ocp4%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%83%AB%E3%81%B8%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3)を参照ください。
 
 ## 3-3. コンテナイメージのビルドとデプロイ
 S2I(Source-to-Image)というツールを使って以下の2つのコンポーネントからコンテナイメージを生成し，コンテナアプリケーションをデプロイします。
