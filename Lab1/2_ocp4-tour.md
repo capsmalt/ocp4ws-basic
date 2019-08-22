@@ -38,13 +38,13 @@
   >
   >
   >例) 「踏み台サーバー(Bastion Server)」のSSHログイン情報
-  > - `<Bastion_User_ID>`: **User00**
+  > - `<Bastion_User_ID>`: **user00**
   > - `<Bastion_Server_IP>`: **1.2.3.4**
   > - `<Private_Key>`: **bs-key.pem**
   >
   >実行例) 
   >```
-  >$ ssh -i bs-key.pem User00@1.2.3.4
+  >$ ssh -i bs-key.pem user00@1.2.3.4
   >```
 
 2. OCP4クラスターにocコマンドでログインします。
@@ -61,13 +61,13 @@
   >
   >例) 「OpenShift_API」へのログイン情報
   > - `<OpenShift_API>`: **https://api.group00-ocp4ws-basic.capsmalt.org:6443**
-  > - `<User_ID>`: **User00**
+  > - `<User_ID>`: **user00**
   > - `<User_PW>`: **ocppass**
   >
   >実行例) 
   >```
   >$ oc login https://api.group00-ocp4ws-basic.capsmalt.org:6443  
-  >Username: User00
+  >Username: user00
   >Password: ocppass
   >```
 
@@ -77,15 +77,50 @@
 >**注意: ワークショップ参加者の方は，必ず自身に割当てられた <OpenShift_Console>，<User_ID>，<User_PW> を使用してください。**  
 >例) 「OpenShift4コンソール」のログイン情報
 > - `<OpenShift_Console>`: **https://console-openshift-console.apps.group00-ocp4ws-basic.capsmalt.org**
-> - `<User_ID>`: **User00**
+> - `<User_ID>`: **user00**
 > - `<User_PW>`: **ocppass**
 >
 >実行例)
 > - ブラウザで https://console-openshift-console.apps.group00-ocp4ws-basic.capsmalt.org にアクセス
 >   - capsmalt's group を選択
->   - User00 / ocppass を入力してログイン
+>   - user00 / ocppass を入力してログイン
 
 ## 2-3. OCP4クラスターの動作確認
+コンソールやocコマンドでクラスターの状態について確認しましょう。ただし基本的には参照系(oc get pod, oc describe deploy, oc logs xxx, etc.)を使用することにしましょう。  
+
+はじめに，ocコマンド or コンソールのいずれかで各自のプロジェクトを作成しましょう。  
+
+>**※注意: クラスターを壊さない，他の人に影響を与えないようにするために重要です。必ず実施しましょう。**
+> - 他の人と重複しないプロジェクトを作成すること (例: `oc new-project user00-lab1-2`)
+
+[ocコマンドでプロジェクト作成する場合]
+```
+$ oc new-project <Project_Name> # (プロジェクトの作成) 
+$ oc project <Project_Name> # (プロジェクトの指定)
+```
+
+>実行例)
+>
+>```
+>$ oc new-project user00-lab1-2
+>$ oc project user00-lab1-2
+>```
+
+[コンソール上でプロジェクト作成する場合]
+1. Home > Projects > Create Project を選択します。
+
+    ![](images/create_project.png)
+
+1. プロジェクト名(例: `user00-lab1-2` )を指定し，**Create** を選択します。
+
+    ![](images/create_project_input_projName.png)
+
+    ![](images/create_project_result.png)
+
+
+
+**以降の手順は，基本的には各自のプロジェクト内で実施します。**
+
 ### 2-3-1. Nodeの確認
 ### 2-3-2. ワークロードの確認
 ### 2-3-3. モニタリング機能の確認
@@ -93,3 +128,4 @@
 ---
 以上で，OCP4クラスターへのログインと動作確認は完了です。  
 次に [コンテナイメージのビルドとデプロイ](3_ocp4-build-deploy.md) のハンズオンに進みます。
+
