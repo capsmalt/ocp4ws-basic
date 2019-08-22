@@ -198,9 +198,74 @@ OpenShift4では，各プロジェクト(ネームスペース)に属するあ�
 
     ![](images/ocp4-console-project-openshift-console-status-prometheus-close.png)
 
-
-
 ### 2-3-2. Nodeの確認
+OpenShift4クラスターはIPIでデフォルト構成でインストールした場合，Master3台/Worker3台の計6台のNode群で構成されます。  
+Nodeの状態について確認してみましょう。
+
+1. [Compute] > [Nodes] を選択します。
+
+    ![](images/ocp4-compute-nodes.png)
+
+    デフォルトでは [Compact]タブが選択されており，例えば `
+ip-10-0-134-224.ap-northeast-1.compute.internal` のような名称で，計6台のNodeが一覧されています。また，MACHINE欄を見ると，`
+group00-ocp4ws-basic-b9qqj-worker-ap-northeast-1a-t6rgd` や `group00-ocp4ws-basic-b9qqj-master-0` のようにMaster/Workerの文字列が確認できます。
+
+1. [Compute] > [Nodes] > [Expand] を選択して詳細情報を一覧表示します。(上図の状態から [Expand]タブを選択できます)
+
+    ![](images/ocp4-compute-nodes-expand.png)
+    
+    紫色のテキストで各Nodeに付与されたラベルが表現されています。
+
+    >yamlの場合
+    >```
+    >labels:
+    >  beta.kubernetes.io/os: linux
+    >  failure-domain.beta.kubernetes.io/zone: ap-northeast-1a
+    >  node-role.kubernetes.io/worker: ''
+    >  failure-domain.beta.kubernetes.io/region: ap-northeast-1
+    >  node.openshift.io/os_id: rhcos
+    >  beta.kubernetes.io/instance-type: m4.large
+    >  kubernetes.io/hostname: ip-10-0-134-224
+    >  beta.kubernetes.io/arch: amd64
+    > 
+    >```
+
+1. 任意のWorkerを選択して詳細を確認します。
+
+    ![](images/ocp4-compute-nodes-expand-worker.png)
+    
+    [Overview]タブでは，選択した単一のNodeのCPUやメモリなどのリソース利用状況が確認できます。  
+    プロジェクトと同様に，OpenShift4にデフォルト構成されているPrometheusが各メトリクスを抽出しています。
+    
+    ![](images/ocp4-compute-nodes-worker_overview.png)
+
+    [YAML]タブでは，OpenShift4上で管理されるNode情報をyaml形式で確認できます。  
+    例えば，ラベル情報(上述)など確認できます。
+    
+    ![](images/ocp4-compute-nodes-worker_yaml.png)
+    
+    [Pods]タブでは，あるNode上で動作するPod一覧を確認できます。  
+    例えば，`openshift-monitoringネームスペース`に属する grafanaのPodや，alertManagerなどが動作していることが分かります。
+    
+    ![](images/ocp4-compute-nodes-worker_pod.png)
+    
+    [Events]タブでは，Nodeに起こったイベントについて時系列に表示されます。現時点では何も起こっていないので出力はありませんが，Nodeのステータスが変わったり，例えば割当リソースが変わったりなどの変化が起こると出力されます。
+    
+1. Nodeに対する操作(Action)を以下図のようにメニューを開いて確認します。
+    
+    ![](images/ocp4-compute-nodes-worker_action.png)
+
+    ラベルやアノテーションの変更をUIから簡易的に行えます。  
+    ![](images/ocp4-compute-nodes-edit-label.png)
+
+    ![](images/ocp4-compute-nodes-edit-annotation.png)
+
+    Node構成について，yamlを直接編集して変更が行えます。  
+    ![](images/ocp4-compute-nodes-edit-node.png)
+    
+    [Mark as Unschedulable] を選択することで，今後新しいPodが該当Nodeにスケジューリングされないように設定できます。  
+    ![](images/ocp4-compute-nodes-unschedulable.png)    
+    
 ### 2-3-3. ワークロードの確認
 ### 2-3-4. モニタリング機能の確認
 
