@@ -26,52 +26,50 @@
 
 ## 2-2. OCP4へのログイン
 ### 2-2-1. ocコマンドによるログイン(oc login)
-#### 2-2-1-1. 踏み台サーバー(Bastion Server)にログイン
-SSHにて踏み台サーバー(Bastion Server)にログインします。
+1. 踏み台サーバー(Bastion Server)にSSHでログインします。
 
-```
-$ ssh -i <Private_Key> <Bastion_User_ID>@<Bastion_Server_IP>
+  ```
+  $ ssh -i <Private_Key> <Bastion_User_ID>@<Bastion_Server_IP>
+  
+  y
+  ```
 
-y
-```
+  >**※注意: ワークショップ参加者の方は，必ず自身に割当てられた <Bastion_User_ID>，<Bastion_Servier_IP>，<Private_Key> を使用してください。**  
+  >
+  >
+  >例) 「踏み台サーバー(Bastion Server)」のSSHログイン情報
+  > - `<Bastion_User_ID>`: **User00**
+  > - `<Bastion_Server_IP>`: **1.2.3.4**
+  > - `<Private_Key>`: **bs-key.pem**
+  >
+  >実行例) 
+  >```
+  >$ ssh -i bs-key.pem User00@1.2.3.4
+  >```
 
->**※注意: ワークショップ参加者の方は，必ず自身に割当てられた <Bastion_User_ID>，<Bastion_Servier_IP>，<Private_Key> を使用してください。**  
->
->
->例) 「踏み台サーバー(Bastion Server)」のSSHログイン情報
-> - `<Bastion_User_ID>`: **User00**
-> - `<Bastion_Server_IP>`: **1.2.3.4**
-> - `<Private_Key>`: **bs-key.pem**
->
->実行例) 
->```
->$ ssh -i bs-key.pem User00@1.2.3.4
->```
+2. OCP4クラスターにocコマンドでログインします。
 
-#### 2-2-1-2. OCP4クラスターにログイン
-踏み台サーバー内でocコマンドを使用してOCP4クラスターにログインします。
+  ```
+  $ oc login <OpenShift_API>
 
-```
-$ oc login <OpenShift_API>
+  Username: "<User_ID>" を入力
+  Password: "<User_PW>" を入力
+  ```
 
-Username: "<User_ID>" を入力
-Password: "<User_PW>" を入力
-```
-
->**※注意: ワークショップ参加者の方は，必ず自身に割当てられた <OpenShift_API>，<User_ID>，<User_PW> を使用してください。**  
->
->
->例) 「OpenShift_API」へのログイン情報
-> - `<OpenShift_API>`: **https://api.group00-ocp4ws-basic.capsmalt.org:6443**
-> - `<User_ID>`: **User00**
-> - `<User_PW>`: **ocppass**
->
->実行例) 
->```
->$ oc login https://api.group00-ocp4ws-basic.capsmalt.org:6443  
->Username: User00
->Password: ocppass
->```
+  >**※注意: ワークショップ参加者の方は，必ず自身に割当てられた <OpenShift_API>，<User_ID>，<User_PW> を使用してください。**  
+  >
+  >
+  >例) 「OpenShift_API」へのログイン情報
+  > - `<OpenShift_API>`: **https://api.group00-ocp4ws-basic.capsmalt.org:6443**
+  > - `<User_ID>`: **User00**
+  > - `<User_PW>`: **ocppass**
+  >
+  >実行例) 
+  >```
+  >$ oc login https://api.group00-ocp4ws-basic.capsmalt.org:6443  
+  >Username: User00
+  >Password: ocppass
+  >```
 
 ### 2-2-2. ブラウザからOCP4コンソールへのログイン
 ブラウザ(Chrome or Firefox)からOpenShiftのコンソールにログインします。
