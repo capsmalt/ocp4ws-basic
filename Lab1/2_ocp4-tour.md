@@ -85,6 +85,10 @@
 >   - capsmalt's group を選択
 >   - user00 / ocppass を入力してログイン
 
+![](images/ocp4-console-login-group.png)
+
+![](images/ocp4-console-login-user-pw.png)
+
 ## 2-3. OCP4クラスターの動作確認
 コンソールやocコマンドでクラスターの状態について確認しましょう。ただし基本的には参照系(oc get pod, oc describe deploy, oc logs xxx, etc.)を使用することにしましょう。  
 
@@ -107,23 +111,85 @@ $ oc project <Project_Name> # (プロジェクトの指定)
 >```
 
 [コンソール上でプロジェクト作成する場合]
-1. Home > Projects > Create Project を選択します。
+1. [Home] > [Projects] > [Create Project] を選択します。
 
-    ![](images/create_project.png)
+  ![](images/ocp4-console-create-project-1.png)
+
+  >コンソール右上のユーザー名が自身の<User_ID>であることを確認しましょう
 
 1. プロジェクト名(例: `user00-lab1-2` )を指定し，**Create** を選択します。
 
-    ![](images/create_project_input_projName.png)
-
-    ![](images/create_project_result.png)
+  ![](images/ocp4-console-create-project-2.png)
 
 
+  ![](images/ocp4-console-create-project-3.png)
+
+  また，作成したプロジェクトは，[Home] > [Projects] と辿ることで確認できます。
+  
+  ![](images/ocp4-console-project.png)
 
 **以降の手順は，基本的には各自のプロジェクト内で実施します。**
 
-### 2-3-1. Nodeの確認
-### 2-3-2. ワークロードの確認
-### 2-3-3. モニタリング機能の確認
+### 2-3-1. プロジェクトの確認
+1. [Home] > [Status] > [Projects: 自身のプロジェクト] > [Dashboard] を選択します。
+
+  ![](images/ocp4-console-project-status-own.png)
+
+  以下のような画面が表示されます。ただ，作成したばかりのプロジェクトなので特に情報がありません。
+  
+  ![](images/ocp4-console-project-status.png)
+
+1. [Projects:]のプルダウンメニューから [openshift-console] を選択します。
+
+  ![](images/ocp4-console-project-openshift-console.png)
+
+  openshift-consoleプロジェクトにおけるCPUやメモリなどのリソース利用状況が確認できました。  
+  さらに下方では，Podによるメモリ利用量と，利用量の大きい順にTOP10が一覧表示されています。  
+
+  ![](images/ocp4-console-project-openshift-console-status.png)
+  
+1. openshift-consoleプロジェクトの利用状況について詳細に見ていきます。
+
+  グラフ内にカーソルを合わせて選択します。
+
+  ![](images/ocp4-console-project-openshift-console-status-next.png)
+
+  ログインを求められた場合は，OCP4クラスターへのログイン情報を使用します。  
+
+  ![](images/ocp4-console-project-openshift-console-status-login.png)
+  
+  Authorized Accessのページが表示されたら，[Allow selected permissions]を選択します。
+  >モニタリングツール(Prometheus)に対して，ReadOnlyで情報利用する許可を与えています。
+  
+  ![](images/ocp4-console-project-openshift-console-status-allow.png)
+
+  openshift-consoleプロジェクト(=openshift-consoleネームスペース)内のコンテナCPU利用量のグラフが描画されました。
+  
+  ![](images/ocp4-console-project-openshift-console-status-prometheus.png)
+
+  >折れ線グラフにカーソルを合わせると詳細情報が表示されます。
+  >Prometheusに対して，以下のQueryを投げることで上図の情報を抽出しています。
+  > - Query: `namespaces:container_cpu_usage:sum{namespace='openshift-console'}`
+
+1. 任意のメトリクスを指定して描画してみます。
+
+  [- insert metric at cursol -] を選択します。  
+
+  ![](images/ocp4-console-project-openshift-console-status-prometheus-add-1.png)
+  
+  例では，[apiserver_request_count] > Execute にように選択します。  
+  
+  ![](images/ocp4-console-project-openshift-console-status-prometheus-add-2.png)  
+  
+  以下図のように折れ線グラフが描画され，下部にはリクエストが一覧されています。カーソルをグラフなどに合わせて詳細情報を確認してみましょう。  
+  
+  ![](images/ocp4-console-project-openshift-console-status-prometheus-add-3.png)  
+
+OpenShift4では，各プロジェクト(ネームスペース)に属するあらゆるリソースのメトリクスを初期状態で取得できるようになっています。PrometheusやGrafanaなどを使うことでモニタリングおよび描画を実現しています。
+
+### 2-3-2. Nodeの確認
+### 2-3-3. ワークロードの確認
+### 2-3-4. モニタリング機能の確認
 
 ---
 以上で，OCP4クラスターへのログインと動作確認は完了です。  
