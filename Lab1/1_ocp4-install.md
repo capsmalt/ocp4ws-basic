@@ -18,8 +18,8 @@ OpenShift4は，IPIによるインストール，UPIによるインストール�
 ### 1-1-2. 事前準備
 なし
 
-AWSのリソースを使ってOpenShift4をインストール際には、Red Hat Customer Portalアカウントの取得とAWSアカウントの設定が必要です。　　
-以下をハンズオンの中で準備し，最後にOCP4のインストールを行います。
+AWSのリソースを使ってOpenShift4をインストール際には、Red Hat Customer Portalアカウントの取得とAWSアカウントの設定が必要です。  
+以下をハンズオンの中で準備し，最後にOCP4のインストールを行います。  
 - Red Hat Customer Portalのアカウントの準備
 - AWSアカウントの準備
     - AWS IAMユーザーの作成と権限、認証情報の確認
@@ -29,7 +29,8 @@ AWSのリソースを使ってOpenShift4をインストール際には、Red Hat
 - OCP4のインストール
 
 ### 1-2. Red Hatアカウント Customer Portalアカウントの準備
-OpenShift4のインストールに必要なクレデンシャル情報などを取得するために必要です。次のURL(https://cloud.redhat.com/)にアクセスし、[Log in your Red Hat account] > [Red Hat アカウントをお持ちでないお客様] からいくつかの項目を入力し、アカウントを作成します。
+OpenShift4のインストールに必要なクレデンシャル情報などを取得するために必要です。  
+[Red Hatページ](https://cloud.redhat.com/)にアクセスし、[Log in your Red Hat account] > [Red Hat アカウントをお持ちでないお客様] からいくつかの項目を入力し、アカウントを作成します。  
 
 ![](images/ocp4-redhat-account.png)
 
@@ -45,10 +46,10 @@ OpenShift4をインストールする際に必要なEC2やロードバランサ�
 参考までに以下にて、IAMユーザーの作成および権限付与について手順を記載しますが、基本的にはAWS公式ドキュメントに従ってユーザー作成などの操作を行ってください。
 
 - IAMユーザーの作成と権限付与の手順
-IAMページ(https://console.aws.amazon.com/iam/)を開き、[ユーザー]>[ユーザーを追加]を開きます。ユーザー名に任意の名前(図例では “capsmalt-aws”)を指定し、「プログラムによるアクセス」、「AWSマネジメントコンソールへのアクセス」にチェックを入れ、[次のステップ:アクセス権限]に進みます。
-[既存のポリシーを直接アタッチ]を開き、「AdministratorAccess」にチェックを入れて、[次のステップ:タグ]に進みます。
-デフォルト値のままで、[次のステップ:確認]に進みます。
-デフォルト値のままで、[ユーザーの作成]と進みます。
+    1. IAMページ(https://console.aws.amazon.com/iam/)を開き、[ユーザー]>[ユーザーを追加]を開きます。ユーザー名に任意の名前(図例では “capsmalt-aws”)を指定し、「プログラムによるアクセス」、「AWSマネジメントコンソールへのアクセス」にチェックを入れ、[次のステップ:アクセス権限]に進みます。
+    2. [既存のポリシーを直接アタッチ]を開き、「AdministratorAccess」にチェックを入れて、[次のステップ:タグ]に進みます。
+    3. デフォルト値のままで、[次のステップ:確認]に進みます。
+    4. デフォルト値のままで、[ユーザーの作成]と進みます。
 
 ![](images/ocp4-aws-iam.png)
 
@@ -63,32 +64,31 @@ IAMページ(https://console.aws.amazon.com/iam/)を開き、[ユーザー]>[ユ
 
 “アクセスキーID”、”シークレットアクセスキー” はAWS CLI(後述)からAWSリソースを制御するために必要になりますので、忘れずにメモしておきましょう。「.csvのダウンロード」を選択して認証情報をローカルに保存しておくと便利です。
 
-(参考) OpenShift4インストールに必要なパーミッション(https://access.redhat.com/documentation/ja-jp/openshift_container_platform/4.1/html/installing/installing-on-aws#installation-aws-permissions_installing-aws-account)
+(参考) [OpenShift4インストールに必要なパーミッション](https://access.redhat.com/documentation/ja-jp/openshift_container_platform/4.1/html/installing/installing-on-aws#installation-aws-permissions_installing-aws-account)
 
 ### 1-3-3. AWS Route53のサービスの作成
 OpenShift4クラスターに外部から接続するために必要です。既に利用可能なドメインがあれば新規に取得する必要はありません。取得したドメインは、2-2節でOpenShift4インストーラーを実行する際に指定しますのでメモしておきましょう。(本章の説明では、 “capsmalt.net”)
 
 - Route 53でドメイン登録
-AWSにログインし、[サービス]>[Route 53]>[ドメインの登録-今すぐ始める]>[ドメインの登録]を開きます。
-任意のドメイン名を決めて、[チェック]>[カートに入れる]>[続行]と進めて、決済など契約手続きを行います。
-ドメインの自動更新の[無効化]を選択し、規約を確認してチェックを入れます。また登録者のメールアドレスに送られる通知の確認も行います。最後に[購入の完了]を選択します。
-ドメイン登録のステータスが進行中から成功に変わるのを待ちましょう。(30分程度かかりました)
+    1. AWSにログインし、[サービス]>[Route 53]>[ドメインの登録-今すぐ始める]>[ドメインの登録]を開きます。
+    2. 任意のドメイン名を決めて、[チェック]>[カートに入れる]>[続行]と進めて、決済など契約手続きを行います。
+    3. ドメインの自動更新の[無効化]を選択し、規約を確認してチェックを入れます。また登録者のメールアドレスに送られる通知の確認も行います。最後に[購入の完了]を選択します。
+    4. ドメイン登録のステータスが進行中から成功に変わるのを待ちましょう。(30分程度かかりました)
 
 ![](images/ocp4-aws-route53.png)
 
 図: Route 53サービスでドメイン登録
 
-(参考) Route 53サービス(https://console.aws.amazon.com/route53/)
+(参考) [Route 53サービス](https://console.aws.amazon.com/route53/)
 
 ### 1-3-4. AWSリソースの制限緩和 (デフォルト構成の場合は不要)
 AWSアカウント作成直後の状態ではリソース利用量に対して制限がかかっているため、制限緩和の作業が必要になる場合があります。OpenShift4をインストールするために必要なリソースは “OpenShift Limits Calculator” で確認できます。2019年8月16日時点では、AWSアカウントの初期状態でもOpenShift4をデフォルト構成でインストール可能です。一方で、カスタマイズ構成でクラスター構築する場合や、複数クラスターを構築するなど、多量のリソースが必要になる場合は事前にAWSサポート窓口経由で制限緩和リクエスト挙げる必要があります。
 
 
-(参考) OpenShift4のインストールおよび実行に影響を与えうるAWSリソース制限(https://access.redhat.com/documentation/ja-jp/openshift_container_platform/4.1/html/installing/installing-on-aws#installation-aws-limits_installing-aws-account)
-(参考) OpenShift Limits Calculator (https://access.redhat.com/labs/ocplimitscalculator/)
-(参考) AWS東京リージョンの制限 (https://ap-northeast-1.console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#Limits:)
-(参考) AWS制限緩和のリクエストページ
-(https://console.aws.amazon.com/support/cases?#/create?issueType=service-limit-increase)
+(参考) [OpenShift4のインストールおよび実行に影響を与えうるAWSリソース制限](https://access.redhat.com/documentation/ja-jp/openshift_container_platform/4.1/html/installing/installing-on-aws#installation-aws-limits_installing-aws-account)
+(参考) [OpenShift Limits Calculator](https://access.redhat.com/labs/ocplimitscalculator/)
+(参考) [AWS東京リージョンの制限](https://ap-northeast-1.console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#Limits:)
+(参考) [AWS制限緩和のリクエストページ](https://console.aws.amazon.com/support/cases?#/create?issueType=service-limit-increase)
 
 ### 1-3-5. AWS CLIのセットアップ
 OpenShift4インストーラー(2-2節にて後述)がAWSアカウントの認証情報を使用するために構成しておく必要があります。`$ aws configure`を実行して、2-1-3で取得したアクセスキーID、シークレットアクセスキーを指定します。またリージョン(東京の場合は ap-northeast-1)も指定しましょう。
@@ -98,7 +98,7 @@ OpenShift4インストーラー(2-2節にて後述)がAWSアカウントの認�
 図: AWSアカウントの認証情報の構成(CLI)
 
 ## 1-4. OCP4のインストール
-最初にIPIインストールを実行するためのインストーラーと，クレデンシャル情報を用意します。Red Hat Customer Portalアカウントにログインし、IPIインストール手順のページ(https://cloud.redhat.com/openshift/install/aws/installer-provisioned)から取得します。
+最初にIPIインストールを実行するためのインストーラーと，クレデンシャル情報を用意します。Red Hat Customer Portalアカウントにログインし、[AWSへのIPIインストール](https://cloud.redhat.com/openshift/install/aws/installer-provisioned)から取得します。
 
 OpenShift4インストーラー(openshift-installコマンド) は、OpenShift4をIPIという方法でインストールする際に必要です。インストール操作を行うクライアントOS(linux or mac)に合わせたインストーラーを取得します。
 
@@ -106,7 +106,7 @@ OpenShift4インストーラー(openshift-installコマンド) は、OpenShift4�
 
 図: OpenShift4インストーラー (linux or mac)
 
-以下のように実行して展開し、openshift-installコマンドを実行できるようにしておきます。
+以下のように実行して展開し、openshift-installコマンドを実行できるようにしておきます。  
 $ tar xzf openshift-install-mac-4.1.9.tar.gz 
 
 
@@ -158,31 +158,33 @@ pullSecret: '{"auths":{"cloud.openshift.com":{"auth":"XXX","email":"capsmalt@gma
 
 OpenShift4を構築するコマンドを実行した際にinstall-config.yamlは、自動削除されてしまいますのでバックアップを取っておきましょう。(例: `$ cp -p install-config.yaml{,.org}`)
 
-`AWS上にOpenShift4を構築するコマンド(`$ openshift-install create cluster)を実行します。クラスター構築完了までに3-40分ほどかかります。コマンド実行後インストールログ(.openshift_install.log)がコマンド実行ディレクトリに生成されるので、`$ tail -f .openshift_install.log` などでログを追ってみるのも良いかもしれません。
+AWS上にOpenShift4を構築するコマンド(`$ openshift-install create cluster`)を実行します。  
+クラスター構築完了までに3-40分ほどかかります。コマンド実行後インストールログ(.openshift_install.log)がコマンド実行ディレクトリに生成されるので、tail(`$ tail -f .openshift_install.log`)などでログを追ってみるのも良いかもしれません。
 
 ![](images/ocp4-openshift-install_create_cluster.png)
 
 図: $ openshift-install create cluster 実行イメージ
 
 以下のような文字列(URLおよびログイン情報)の出力が確認できればクラスター構築は完了です。
-・Kubernetes API (Master): https://api.ocp4-aws.capsmalt.net:6443
-・Console: https://console-openshift-console.apps.ocp4-aws.k8show.net
-・ログインユーザー: kubeadmin
-・ログインパスワード: Nmp83-XXXXX-XXXXX-YHtst
+- Kubernetes API (Master): https://api.ocp4-aws.capsmalt.net:6443
+- Console: https://console-openshift-console.apps.ocp4-aws.k8show.net
+- ログインユーザー: kubeadmin
+- ログインパスワード: Nmp83-XXXXX-XXXXX-YHtst
 
 ![](images/ocp4-openshift-install_create_cluster_result.png)
 
 図: クラスター構築完了時点の出力イメージ
 
-インストールに失敗した場合は、「コラム: OpenShift4インストールに失敗した場合の前処理」を参照ください。AWSリソース不足では無い場合は、何度か繰り返しトライしてみてください。
-※AWSアカウントを作成した直後の状態では、リージョンやリソースの準備ができていないせいか、うまくクラスター作成できない場合があります。あくまで経験上の話にはなりますが、作成したばかりのAWSアカウントの場合は、2,3回トライするとクラスター作成が無事成功するようになりました。
+インストールに失敗した場合は、「Tips: OpenShift4インストールに失敗した場合の前処理」を参照ください。AWSリソース不足では無い場合は、何度か繰り返しトライしてみてください。  
+>AWSアカウントを作成した直後の状態では、リージョンやリソースの準備ができていないせいか、うまくクラスター作成できない場合があります。あくまで経験上の話にはなりますが、作成したばかりのAWSアカウントの場合は、2,3回トライするとクラスター作成が無事成功するようになりました。
 
 ### Tips: OpenShift4インストールに失敗した場合の前処理
 OpenShift4のインストールに失敗し、エラー末尾に以下のようなメッセージが出力される場合があります。
 ```
 "failed to fetch Cluster: failed to generate asset \"Cluster\": failed to create cluster: failed to apply using Terraform"
 ```
-例えば、AWSの指定リージョンの準備が出来ていない場合や、AWSリソースの制限にかかるケースなどいくつかのパターンが考えられます。この場合、エラーメッセージを参考に対処した上で再インストールの作業が必要です。再インストールする際は、以下を忘れずに実施しましょう。
+例えば、AWSの指定リージョンの準備が出来ていない場合や、AWSリソースの制限にかかるケースなどいくつかのパターンが考えられます。  
+この場合、エラーメッセージを参考に対処した上で再インストールの作業が必要です。再インストールする際は、以下を忘れずに実施しましょう。
 ```
 $ openshift-install destroy cluster                      # AWS上のOpenShift4関連のリソースを削除
 $ rm terraform.tfstate 		                           # Terraformのstateファイルの削除
@@ -193,7 +195,7 @@ $ openshift-install create cluster                       # 再インストール
 
 
 ### Tips: クラスター構成のカスタマイズ
-クラスター構成のカスタマイズは、`$ openshift-install create install-config`で作成された install-config.yamlを編集してから、`$ openshift-install create cluster`を実行することで行なえます。例えば、初期状態ではMasterノード3台、Workerノード3台の計6台構成でOpenShift4クラスターは構築されます。Workerノードを6台に変更する場合は以下のようにyamlを編集します。
+クラスター構成のカスタマイズは、`$ openshift-install create install-config`で作成された install-config.yamlを編集してから、`$ openshift-install create cluster`を実行することで行なえます。初期状態ではMasterノード3台、Workerノード3台の計6台構成でOpenShift4クラスターは構築されます。例えば，Workerノードを6台に変更する場合は以下のようにyamlを編集します。
 
 ```
 編集前:
