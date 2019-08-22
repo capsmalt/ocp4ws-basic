@@ -27,49 +27,48 @@
 ## 2-2. OCP4へのログイン
 ### 2-2-1. ocコマンドによるログイン(oc login)
 1. 踏み台サーバー(Bastion Server)にSSHでログインします。
-
-  ```
-  $ ssh -i <Private_Key> <Bastion_User_ID>@<Bastion_Server_IP>
+    ```
+    $ ssh -i <Private_Key> <Bastion_User_ID>@<Bastion_Server_IP>
   
-  y
-  ```
+    y
+    ```
 
-  >**※注意: ワークショップ参加者の方は，必ず自身に割当てられた <Bastion_User_ID>，<Bastion_Servier_IP>，<Private_Key> を使用してください。**  
-  >
-  >
-  >例) 「踏み台サーバー(Bastion Server)」のSSHログイン情報
-  > - `<Bastion_User_ID>`: **user00**
-  > - `<Bastion_Server_IP>`: **1.2.3.4**
-  > - `<Private_Key>`: **bs-key.pem**
-  >
-  >実行例) 
-  >```
-  >$ ssh -i bs-key.pem user00@1.2.3.4
-  >```
+    >**※注意: ワークショップ参加者の方は，必ず自身に割当てられた <Bastion_User_ID>，<Bastion_Servier_IP>，<Private_Key> を使用してください。**  
+    >
+    >
+    >例) 「踏み台サーバー(Bastion Server)」のSSHログイン情報
+    > - `<Bastion_User_ID>`: **user00**
+    > - `<Bastion_Server_IP>`: **1.2.3.4**
+    > - `<Private_Key>`: **bs-key.pem**
+    >
+    >実行例) 
+    >```
+    >$ ssh -i bs-key.pem user00@1.2.3.4
+    >```
 
-2. OCP4クラスターにocコマンドでログインします。
+1. OCP4クラスターにocコマンドでログインします。
 
-  ```
-  $ oc login <OpenShift_API>
+    ```
+    $ oc login <OpenShift_API>
 
-  Username: "<User_ID>" を入力
-  Password: "<User_PW>" を入力
-  ```
+    Username: "<User_ID>" を入力
+    Password: "<User_PW>" を入力
+    ```
 
-  >**※注意: ワークショップ参加者の方は，必ず自身に割当てられた <OpenShift_API>，<User_ID>，<User_PW> を使用してください。**  
-  >
-  >
-  >例) 「OpenShift_API」へのログイン情報
-  > - `<OpenShift_API>`: **https://api.group00-ocp4ws-basic.capsmalt.org:6443**
-  > - `<User_ID>`: **user00**
-  > - `<User_PW>`: **ocppass**
-  >
-  >実行例) 
-  >```
-  >$ oc login https://api.group00-ocp4ws-basic.capsmalt.org:6443  
-  >Username: user00
-  >Password: ocppass
-  >```
+    >**※注意: ワークショップ参加者の方は，必ず自身に割当てられた <OpenShift_API>，<User_ID>，<User_PW> を使用してください。**  
+    >
+    >
+    >例) 「OpenShift_API」へのログイン情報
+    > - `<OpenShift_API>`: **https://api.group00-ocp4ws-basic.capsmalt.org:6443**
+    > - `<User_ID>`: **user00**
+    > - `<User_PW>`: **ocppass**
+    >
+    >実行例) 
+    >```
+    >$ oc login https://api.group00-ocp4ws-basic.capsmalt.org:6443  
+    >Username: user00
+    >Password: ocppass
+    >```
 
 ### 2-2-2. ブラウザからOCP4コンソールへのログイン
 ブラウザ(Chrome or Firefox)からOpenShiftのコンソールにログインします。
@@ -119,81 +118,87 @@ $ oc project <Project_Name> # (プロジェクトの指定)
 >```
 
 [コンソール上でプロジェクト作成する場合]
-1. [Home] > [Projects] > [Create Project] を選択します。
+1. [Home] > [Projects] > [Create Project] を選択します。  
 
-  ![](images/ocp4-console-create-project-1.png)
+    ![](images/ocp4-console-create-project-1.png)
 
-  >コンソール右上のユーザー名が自身の<User_ID>であることを確認しましょう
+    >コンソール右上のユーザー名が自身の<User_ID>であることを確認しましょう
 
-1. プロジェクト名(例: `user00-lab1-2` )を指定し，**Create** を選択します。
+1. プロジェクト名(例: `user00-lab1-2` )を指定し，**Create** を選択します。  
 
-  ![](images/ocp4-console-create-project-2.png)
+    ![](images/ocp4-console-create-project-2.png)
 
 
-  ![](images/ocp4-console-create-project-3.png)
+    ![](images/ocp4-console-create-project-3.png)
 
-  また，作成したプロジェクトは，[Home] > [Projects] と辿ることで確認できます。
-  
-  ![](images/ocp4-console-project.png)
+    また，作成したプロジェクトは，[Home] > [Projects] と辿ることで確認できます。
+
+    ![](images/ocp4-console-project.png)
 
 **以降の手順は，基本的には各自のプロジェクト内で実施します。**
 
 ### 2-3-1. プロジェクトの確認
 1. [Home] > [Status] > [Projects: 自身のプロジェクト] > [Dashboard] を選択します。
 
-  ![](images/ocp4-console-project-status-own.png)
+    ![](images/ocp4-console-project-status-own.png)
 
-  以下のような画面が表示されます。ただ，作成したばかりのプロジェクトなので特に情報がありません。
-  
-  ![](images/ocp4-console-project-status.png)
+    以下のような画面が表示されます。ただ，作成したばかりのプロジェクトなので特に情報がありません。
+
+    ![](images/ocp4-console-project-status.png)
 
 1. [Projects:]のプルダウンメニューから [openshift-console] を選択します。
 
-  ![](images/ocp4-console-project-openshift-console.png)
+    ![](images/ocp4-console-project-openshift-console.png)
 
-  openshift-consoleプロジェクトにおけるCPUやメモリなどのリソース利用状況が確認できました。  
-  さらに下方では，Podによるメモリ利用量と，利用量の大きい順にTOP10が一覧表示されています。  
+    openshift-consoleプロジェクトにおけるCPUやメモリなどのリソース利用状況が確認できました。  
+    さらに下方では，Podによるメモリ利用量と，利用量の大きい順にTOP10が一覧表示されています。  
 
-  ![](images/ocp4-console-project-openshift-console-status.png)
+    ![](images/ocp4-console-project-openshift-console-status.png)
   
 1. openshift-consoleプロジェクトの利用状況について詳細に見ていきます。
 
-  グラフ内にカーソルを合わせて選択します。
+    グラフ内にカーソルを合わせて選択します。
 
-  ![](images/ocp4-console-project-openshift-console-status-next.png)
+    ![](images/ocp4-console-project-openshift-console-status-next.png)
 
-  ログインを求められた場合は，OCP4クラスターへのログイン情報を使用します。  
+    ログインを求められた場合は，OCP4クラスターへのログイン情報を使用します。  
 
-  ![](images/ocp4-console-project-openshift-console-status-login.png)
-  
-  Authorized Accessのページが表示されたら，[Allow selected permissions]を選択します。
-  >モニタリングツール(Prometheus)に対して，ReadOnlyで情報利用する許可を与えています。
-  
-  ![](images/ocp4-console-project-openshift-console-status-allow.png)
+    ![](images/ocp4-console-project-openshift-console-status-login.png)
 
-  openshift-consoleプロジェクト(=openshift-consoleネームスペース)内のコンテナCPU利用量のグラフが描画されました。
-  
-  ![](images/ocp4-console-project-openshift-console-status-prometheus.png)
+    Authorized Accessのページが表示されたら，[Allow selected permissions]を選択します。
+    >モニタリングツール(Prometheus)に対して，ReadOnlyで情報利用する許可を与えています。
 
-  >折れ線グラフにカーソルを合わせると詳細情報が表示されます。
-  >Prometheusに対して，以下のQueryを投げることで上図の情報を抽出しています。
-  > - Query: `namespaces:container_cpu_usage:sum{namespace='openshift-console'}`
+    ![](images/ocp4-console-project-openshift-console-status-allow.png)
+
+    openshift-consoleプロジェクト(=openshift-consoleネームスペース)内のコンテナCPU利用量のグラフが描画されました。
+
+    ![](images/ocp4-console-project-openshift-console-status-prometheus.png)
+
+    >折れ線グラフにカーソルを合わせると詳細情報が表示されます。
+    >Prometheusに対して，以下のQueryを投げることで上図の情報を抽出しています。
+    > - Query: `namespaces:container_cpu_usage:sum{namespace='openshift-console'}`
 
 1. 任意のメトリクスを指定して描画してみます。
 
-  [- insert metric at cursol -] を選択します。  
+    [- insert metric at cursol -] を選択します。  
 
-  ![](images/ocp4-console-project-openshift-console-status-prometheus-add-1.png)
-  
-  例では，[apiserver_request_count] > Execute にように選択します。  
-  
-  ![](images/ocp4-console-project-openshift-console-status-prometheus-add-2.png)  
-  
-  以下図のように折れ線グラフが描画され，下部にはリクエストが一覧されています。カーソルをグラフなどに合わせて詳細情報を確認してみましょう。  
-  
-  ![](images/ocp4-console-project-openshift-console-status-prometheus-add-3.png)  
+    ![](images/ocp4-console-project-openshift-console-status-prometheus-add-1.png)
+
+    例では，[apiserver_request_count] > Execute にように選択します。  
+
+    ![](images/ocp4-console-project-openshift-console-status-prometheus-add-2.png)  
+
+    以下図のように折れ線グラフが描画され，下部にはリクエストが一覧されています。カーソルをグラフなどに合わせて詳細情報を確認してみましょう。  
+
+    ![](images/ocp4-console-project-openshift-console-status-prometheus-add-3.png)  
 
 OpenShift4では，各プロジェクト(ネームスペース)に属するあらゆるリソースのメトリクスを初期状態で取得できるようになっています。PrometheusやGrafanaなどを使うことでモニタリングおよび描画を実現しています。
+
+1. 最後に，グラフ描画のタブ(Prometheus-Grafana用に開かれたタブ)をクローズしておきます。
+
+    ![](images/ocp4-console-project-openshift-console-status-prometheus-close.png)
+
+
 
 ### 2-3-2. Nodeの確認
 ### 2-3-3. ワークロードの確認
