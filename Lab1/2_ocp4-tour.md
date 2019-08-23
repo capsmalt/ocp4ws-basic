@@ -1,17 +1,9 @@
 # 2. OCP4クラスターへのログインと動作確認
-各自のOCP4クラスターに実際に接続し，クラスターの動作確認を行います。  
-次の作業を行います。  
-- [ocコマンドを使用したOCP4クラスターへのログイン (2-2-1)](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-2-1-oc%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AB%E3%82%88%E3%82%8B%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3oc-login)
-- [ブラウザからOCP4コンソールへのログイン (2-2-2)](2_ocp4-tour.md#2-2-2-%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%8B%E3%82%89ocp4%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%83%AB%E3%81%B8%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3)
-- [プロジェクト(openshift-console)のリソース利用状況の確認 (2-3-1)]()
-- [クラスターを構成するNodeの確認 (2-3-2)]()
+各自のOCP4クラスターに実際に接続し，クラスター内コンポーネントの動作確認を次の手順で行います。  
+- OpenShift4クラスターへのログイン [2-2](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-2-ocp4%E3%81%B8%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3)
+- プロジェクト(openshift-console)のリソース利用状況の確認 [2-3-1](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-3-1-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E5%88%A9%E7%94%A8%E7%8A%B6%E6%B3%81%E3%81%AE%E7%A2%BA%E8%AA%8D)
+- クラスターを構成するNodeの確認 [2-3-2](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-3-2-%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8Bnode%E3%81%AE%E7%A2%BA%E8%AA%8D)
 - [動作中のK8sワークロードの確認 (2-3-3)]()
-
-
-- Cluster Nodeのリソース使用率を確認する(Monitorin Dashboard)
-  - openshift-*などのコアコンポーネントプロジェクトのコンテナ稼働確認 (prometheusやEFKなど)
-  - operatorhubのカタログ確認
-
 
 ## 2-1. 諸注意
 ### 2-1-1. OpenShift4へのログイン方法
@@ -149,9 +141,14 @@ $ oc project <Project_Name> # (プロジェクトの指定)
 
     ![](images/ocp4-console-project.png)
 
-**以降の手順は，基本的には各自のプロジェクト内で実施します。**
-
 ### 2-3-1. プロジェクトのリソース利用状況の確認
+最初に，前の手順で作成した自身のプロジェクトを確認してみましょう。  
+その後，他ユーザーとの共有プロジェクトである `openshift-consoleプロジェクト` のリソース利用状況を確認します。
+
+>**注意:**  
+>**プロジェクト確認については確認をするだけです。変更は行わないようにしてください。**  
+>**複数人でクラスターを共用しているため，変更を加えてしまうと他の方の作業に影響が出てしまいます。**  
+
 1. [Home] > [Status] > [Projects: 自身のプロジェクト] > [Dashboard] を選択します。
 
     ![](images/ocp4-console-project-status-own.png)
@@ -217,7 +214,7 @@ OpenShift4クラスターはIPIでデフォルト構成でインストールし�
 Nodeの状態について確認してみましょう。
 
 >**注意:**  
->**Nodeの確認については確認をするだけです。変更は行わないようにしてください。**  
+>**Node確認については確認をするだけです。変更は行わないようにしてください。**  
 >**複数人でクラスターを共用しているため，変更を加えてしまうと他の方の作業に影響が出てしまいます。**  
 >
 
@@ -285,17 +282,15 @@ group00-ocp4ws-basic-b9qqj-worker-ap-northeast-1a-t6rgd` や `group00-ocp4ws-bas
     [Mark as Unschedulable] を選択することで，今後新しいPodが該当Nodeにスケジューリングされないように設定できます。  
     ![](images/ocp4-compute-nodes-unschedulable.png)    
 
-### 2-3-3. ocコマンドで動作中のK8sワークロードの確認
-クラスターにログインしてない場合は，`$ oc login <OpenShift_API>` でログインします。
+コンソール上で，OpenShift4クラスターを構成するNodeの数や種類，付与されたラベル，リソース利用状況，あるNode上で動作中のPod，Nodeの構成変更，などについて確認しました。
 
->ocコマンドでのログイン方法は，[2-2-1. ocコマンドによるログイン(oc login)](2_ocp4-tour.md#2-2-1-oc%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AB%E3%82%88%E3%82%8B%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3oc-login)を参照ください。
+### 2-3-3. K8sワークロード の動作確認 (ocコマンド使用)
+ocコマンドを使用して，K8sワークロードの動作状況を確認してみましょう。  
 
-1. a
-1. a
-1. s
-
-### 2-3-3. モニタリング機能の確認
-Monitoring-Dashboad
+>クラスターにログインしてない場合は，`$ oc login <OpenShift_API>` でログインします。  
+>
+>ocコマンドでのログイン方法が分からない場合は，[2-2-1. ocコマンドによるログイン(oc login)](2_ocp4-tour.md#2-2-1-oc%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AB%E3%82%88%E3%82%8B%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3oc-login)を参照ください。
+>
 
 ---
 以上で，OCP4クラスターへのログインと動作確認は完了です。  
