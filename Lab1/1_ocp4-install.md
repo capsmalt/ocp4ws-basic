@@ -1,4 +1,20 @@
 # 1. OCP4クラスターの構築
+OpenShift4をAWS上にインストールする際には，Red Hat Customer Portalアカウントの取得とAWSアカウントの設定が必要です。  
+以下をハンズオンの中で準備し，最後にOCP4のインストールを行います。  
+- Red Hat Customer Portalのアカウントの準備
+- AWSアカウントの準備
+    - AWS IAMユーザーの作成と権限、認証情報の確認
+    - AWS Route53サービスの作成
+    - AWSリソースの制限緩和
+    - AWS CLIのセットアップ
+- OCP4のインストール
+    - インストーラー(openshift-install)取得
+    - install-config.yaml作成
+    - インストール
+
+![](images/Lab1-1_IPI_Install.png)
+
+
 ## 1-1. 諸注意
 ### 1-1-1. OpenShift4のインストールについて
 OpenShift4は，IPIによるインストール，UPIによるインストールの2つの方法があります。詳しくは[公式ドキュメント](https://access.redhat.com/documentation/ja-jp/openshift_container_platform/4.1/html/installing/index)を参照ください。
@@ -17,16 +33,6 @@ OpenShift4は，IPIによるインストール，UPIによるインストール�
 
 ### 1-1-2. 事前準備
 なし
-
-AWSのリソースを使ってOpenShift4をインストール際には、Red Hat Customer Portalアカウントの取得とAWSアカウントの設定が必要です。  
-以下をハンズオンの中で準備し，最後にOCP4のインストールを行います。  
-- Red Hat Customer Portalのアカウントの準備
-- AWSアカウントの準備
-    - AWS IAMユーザーの作成と権限、認証情報の確認
-    - AWS Route53サービスの作成
-    - AWSリソースの制限緩和
-    - AWS CLIのセットアップ
-- OCP4のインストール
 
 ### 1-2. Red Hatアカウント Customer Portalアカウントの準備
 OpenShift4のインストールに必要なクレデンシャル情報などを取得するために必要です。  
@@ -98,6 +104,7 @@ OpenShift4インストーラー(2-2節にて後述)がAWSアカウントの認�
 図: AWSアカウントの認証情報の構成(CLI)
 
 ## 1-4. OCP4のインストール
+### 1-4-1. インストーラー取得とクレデンシャルの準備
 最初にIPIインストールを実行するためのインストーラーと，クレデンシャル情報を用意します。Red Hat Customer Portalアカウントにログインし、[AWSへのIPIインストール](https://cloud.redhat.com/openshift/install/aws/installer-provisioned)から取得します。
 
 OpenShift4インストーラー(openshift-installコマンド) は、OpenShift4をIPIという方法でインストールする際に必要です。インストール操作を行うクライアントOS(linux or mac)に合わせたインストーラーを取得します。
@@ -117,7 +124,9 @@ $ tar xzf openshift-install-mac-4.1.9.tar.gz
 
 図: クレデンシャル情報(Pull-Secret)
 
-必要な情報は揃いましたので、図の実行例を参考にOpenShift4をAWS上にインストールしてみましょう。まずはインストールに使用する構成情報(install-config.yaml)を作成します。
+### 1-4-2. インストール用Configファイルの作成 (install-config.yaml)
+必要な情報は揃いましたので、図の実行例を参考にOpenShift4をAWS上にインストールしてみましょう。  
+まずはインストールに使用する構成情報(install-config.yaml)を作成します。  
 
 ![](images/ocp4-openshift-install_create_install-config.png)
 
@@ -156,10 +165,13 @@ pullSecret: '{"auths":{"cloud.openshift.com":{"auth":"XXX","email":"capsmalt@gma
 
 ```
 
-OpenShift4を構築するコマンドを実行した際にinstall-config.yamlは、自動削除されてしまいますのでバックアップを取っておきましょう。(例: `$ cp -p install-config.yaml{,.org}`)
+OpenShift4を構築するコマンドを実行した際にinstall-config.yamlは，自動削除されてしまいますのでバックアップを取っておきましょう。(例: `$ cp -p install-config.yaml{,.org}`)
 
+### 1-4-3. OpenShift4クラスターのインストール
 AWS上にOpenShift4を構築するコマンド(`$ openshift-install create cluster`)を実行します。  
-クラスター構築完了までに3-40分ほどかかります。コマンド実行後インストールログ(.openshift_install.log)がコマンド実行ディレクトリに生成されるので、tail(`$ tail -f .openshift_install.log`)などでログを追ってみるのも良いかもしれません。
+クラスター構築完了までに3-40分ほどかかります。
+
+>コマンド実行後インストールログ(.openshift_install.log)がコマンド実行ディレクトリに生成されるので，tail(`$ tail -f .openshift_install.log`)などでログを追ってみるのも良いかもしれません。
 
 ![](images/ocp4-openshift-install_create_cluster.png)
 
@@ -175,7 +187,7 @@ AWS上にOpenShift4を構築するコマンド(`$ openshift-install create clust
 
 図: クラスター構築完了時点の出力イメージ
 
-インストールに失敗した場合は、「Tips: OpenShift4インストールに失敗した場合の前処理」を参照ください。AWSリソース不足では無い場合は、何度か繰り返しトライしてみてください。  
+インストールに失敗した場合は，「Tips: OpenShift4インストールに失敗した場合の前処理」を参照ください。AWSリソース不足では無い場合は，何度か繰り返しトライしてみてください。  
 >AWSアカウントを作成した直後の状態では、リージョンやリソースの準備ができていないせいか、うまくクラスター作成できない場合があります。あくまで経験上の話にはなりますが、作成したばかりのAWSアカウントの場合は、2,3回トライするとクラスター作成が無事成功するようになりました。
 
 ### Tips: OpenShift4インストールに失敗した場合の前処理
@@ -187,8 +199,8 @@ OpenShift4のインストールに失敗し、エラー末尾に以下のよう�
 この場合、エラーメッセージを参考に対処した上で再インストールの作業が必要です。再インストールする際は、以下を忘れずに実施しましょう。
 ```
 $ openshift-install destroy cluster                      # AWS上のOpenShift4関連のリソースを削除
-$ rm terraform.tfstate 		                           # Terraformのstateファイルの削除
-$ cp install-config.yaml.org install-config.yaml  # OpenShift4構成ファイルのコピー
+$ rm terraform.tfstate 		                             # Terraformのstateファイルの削除
+$ cp install-config.yaml.org install-config.yaml         # OpenShift4構成ファイルのコピー
 上記を実行後に、再度インストールコマンドを実行
 $ openshift-install create cluster                       # 再インストール
 ```
