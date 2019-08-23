@@ -12,7 +12,7 @@ OpenShift4をAWS上にインストールする際には，Red Hat Customer Porta
     - install-config.yaml作成
     - インストール
 
-![](images/Lab1-1_IPI_Install.png)
+![](images/ocp4-Lab1-1_overview.png)
 
 
 ## 1-1. 諸注意
