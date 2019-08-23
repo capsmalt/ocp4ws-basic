@@ -1,13 +1,13 @@
-# 1. OCP4クラスターの構築
+# 1. OpenShift4クラスターの構築
 OpenShift4をAWS上にインストールする際には，Red Hat Customer Portalアカウントの取得とAWSアカウントの設定が必要です。  
-以下をハンズオンの中で準備し，最後にOCP4のインストールを行います。  
+以下をハンズオンの中で準備し，最後にOpenShift4のインストールを行います。  
 - Red Hat Customer Portalのアカウントの準備
 - AWSアカウントの準備
     - AWS IAMユーザーの作成と権限，認証情報の確認
     - AWS Route53サービスの作成
     - AWSリソースの制限緩和
     - AWS CLIのセットアップ
-- OCP4のインストール
+- OpenShift4のインストール
     - インストーラー(openshift-install)取得
     - install-config.yaml作成
     - インストール
@@ -20,7 +20,7 @@ OpenShift4をAWS上にインストールする際には，Red Hat Customer Porta
 OpenShift4は，IPIによるインストール，UPIによるインストールの2つの方法があります。詳しくは[公式ドキュメント](https://access.redhat.com/documentation/ja-jp/openshift_container_platform/4.1/html/installing/index)を参照ください。
 
 - IPI (Installer-Provisioned Infrastructure)
-    - デフォルト設定を使用してOCP4インストーラーがインフラ環境を準備してインストールする方法
+    - デフォルト設定を使用してOpenShift4インストーラーがインフラ環境を準備してインストールする方法
     - 対応クラウドプロバイダー
         - AWS
         - Azure
@@ -103,7 +103,7 @@ OpenShift4インストーラー(2-2節にて後述)がAWSアカウントの認�
 
 図: AWSアカウントの認証情報の構成(CLI)
 
-## 1-4. OCP4のインストール
+## 1-4. OpenShift4のインストール
 ### 1-4-1. インストーラー取得とクレデンシャルの準備
 最初にIPIインストールを実行するためのインストーラーと，クレデンシャル情報を用意します。Red Hat Customer Portalアカウントにログインし，[AWSへのIPIインストール](https://cloud.redhat.com/openshift/install/aws/installer-provisioned)から取得します。
 
@@ -228,5 +228,5 @@ compute:
 他にもEC2インスタンスのタイプをm4.largeからm4.xlargeに変更したり，リージョンやゾーンを指定するなど様々なカスタマイズが行えます。
 
 ---
-以上で，OCP4クラスターの構築は完了です。  
-次に [OCP4クラスターへのログインと動作確認](2_ocp4-tour.md) のハンズオンに進みます。
+以上で，OpenShift4クラスターの構築は完了です。  
+次に [OpenShift4クラスターへのログインと動作確認](2_ocp4-tour.md) のハンズオンに進みます。

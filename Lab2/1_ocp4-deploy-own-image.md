@@ -1,15 +1,15 @@
 # 1. 既存のコンテナイメージのデプロイ
 ## 1-1. 諸注意
 ### 1-1-1. 既存コンテナイメージをデプロイする方法について
-- 既存コンテナイメージ -> OCP上にデプロイ
-- Dockerfile -> コンテナイメージビルド -> OCP上にデプロイ
+- 既存コンテナイメージ -> OpenShift4上にデプロイ
+- Dockerfile -> コンテナイメージビルド -> OpenShift4上にデプロイ
   - s2ibuildできる環境が必要
   - cri-o + buildah環境(RHEL8)が必要
 
 ### 1-1-2. 事前準備
-## 1-2. 既存コンテナイメージをOCP4にデプロイ
-Lab1ではソースコードとbuidler imageを合体させてコンテナイメージを作成し，OCP上にデプロイしました。  
-Lab2の最初のステップでは，**既にコンテナイメージ化済**のターミナルアプリケーションをOCP上にデプロイする手順を実施します。
+## 1-2. 既存コンテナイメージをOpenShift4にデプロイ
+Lab1ではソースコードとbuidler imageを合体させてコンテナイメージを作成し，OpenShift4上にデプロイしました。  
+Lab2の最初のステップでは，**既にコンテナイメージ化済**のターミナルアプリケーションをOpenShift4上にデプロイする手順を実施します。
 
 1. プロジェクトを選択します
     
@@ -45,7 +45,7 @@ Lab2の最初のステップでは，**既にコンテナイメージ化済**の
 
 ### 1-3-2. アプリケーションの動作確認
 1. Location欄にあるリンクを開きます
-    例: `http://workshop-terminal-myprj.apps.ocp41-ipi-0611.k8show.net`
+    例: `http://workshop-terminal-myprj.apps.OpenShift41-ipi-0611.k8show.net`
 
     ![](images/create_route_for_existedImage_result.png)
 
@@ -53,7 +53,7 @@ Lab2の最初のステップでは，**既にコンテナイメージ化済**の
 
     ![](images/create_route_for_existedImage_result_2.png)
 
-## 1-4. [Trial works] - OCP上にアプリをデプロイ2
+## 1-4. [Trial works] - OpenShift4上にアプリをデプロイ2
 お題: 
 
 「**workshop-terminalアプリの特定バージョン(2.10.2)を新規にデプロイして，Routerの振り先を変更してみよう**」
@@ -72,4 +72,4 @@ Lab2の最初のステップでは，**既にコンテナイメージ化済**の
 
 ---
 以上で，既存のコンテナイメージのデプロイは完了です。  
-次に [Jenkinsベースのビルドパイプラインの利用](2_ocp4-jenkins-pipeline.md) のハンズオンに進みます。
+次に [Jenkinsベースのビルドパイプラインの利用](2_OpenShift4-jenkins-pipeline.md) のハンズオンに進みます。

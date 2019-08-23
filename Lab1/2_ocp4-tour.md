@@ -9,7 +9,7 @@
 
 ## 2-1. 諸注意
 ### 2-1-1. OpenShift4へのログイン方法
-- **ocコマンド** : kubectlをwrapしたOpenShiftを制御するCLIでログイン
+- **ocコマンド** : kubectlをwrapしたOpenShift4を制御するCLIでログイン
   - `oc login <OpenShift_API>`: 任意のユーザーでログイン
   - `oc get pods -n default`: defaultネームスペースのPodを一覧表示
   - `kubectl get pods -n default` : kubectlも使用可
@@ -76,7 +76,7 @@
     >```
 
 ### 2-2-2. ブラウザからOpenShift4コンソールへのログイン
-ブラウザ(Chrome or Firefox)からOpenShiftのコンソールにログインします。
+ブラウザ(Chrome or Firefox)からOpenShift4のコンソールにログインします。
 
 >**注意: ワークショップ参加者の方は，必ず自身に割当てられた <OpenShift_Console>，<User_ID>，<User_PW> を使用してください。**  
 >例) 「OpenShift4コンソール」のログイン情報
@@ -391,9 +391,9 @@ ocコマンドを使用して，K8sワークロードの動作状況を確認し
     >console     ClusterIP   172.30.159.179   <none>        443/TCP   16h
     >downloads   ClusterIP   172.30.220.192   <none>        80/TCP    16h
 
-ocコマンドは，Kubernetesを拡張したOpenShiftの制御をシンプルに行うために用意されているCLIですが，kubectlと同じ制御が行えます。例えば，`$ kubectl describe po`と同じ操作を `$ oc describe po` で行えます。余談ですが，もちろんkubectlコマンドをOpenShiftで使うこともできます。  
+ocコマンドは，Kubernetesを拡張したOpenShift4の制御をシンプルに行うために用意されているCLIですが，kubectlと同じ制御が行えます。例えば，`$ kubectl describe po`と同じ操作を `$ oc describe po` で行えます。余談ですが，もちろんkubectlコマンドをOpenShift4で使うこともできます。  
 
-OpenShiftによって拡張された機能については，次のハンズオン([コンテナイメージのビルドとデプロイ](3_ocp4-build-deploy.md))で体験できます。  
+OpenShift4によって拡張された機能については，次のハンズオン([コンテナイメージのビルドとデプロイ](3_ocp4-build-deploy.md))で体験できます。  
 
 ---
 以上で，OpenShift4クラスターへのログインと動作確認は完了です。  

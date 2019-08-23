@@ -1,10 +1,10 @@
-# OpenShift Basic Lab2
+# OpenShift4 Basic Lab2
 コンテナイメージのデプロイと，Jenkinsによるビルドパイプライン動作について学びます。
 
 ## 概要
 
 OpenShift4クラスターに対して，既存のコンテナイメージをデプロイします。  
-また，JenkinsをOpenShift上に構築し，Jeknins Pipelineを使用したビルドとデプロイを行います。
+また，JenkinsをOpenShift4上に構築し，Jeknins Pipelineを使用したビルドとデプロイを行います。
 
 ## ラボ構成
 
