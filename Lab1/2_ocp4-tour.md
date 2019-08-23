@@ -1,9 +1,9 @@
 # 2. OCP4クラスターへのログインと動作確認
 各自のOCP4クラスターに実際に接続し，クラスター内コンポーネントの動作確認を次の手順で行います。  
-- OpenShift4クラスターへのログイン [2-2](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-2-ocp4%E3%81%B8%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3)
-- プロジェクト(openshift-console)のリソース利用状況の確認 [2-3-1](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-3-1-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E5%88%A9%E7%94%A8%E7%8A%B6%E6%B3%81%E3%81%AE%E7%A2%BA%E8%AA%8D)
-- クラスターを構成するNodeの確認 [2-3-2](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-3-2-%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8Bnode%E3%81%AE%E7%A2%BA%E8%AA%8D)
-- [動作中のK8sワークロードの確認 (2-3-3)]()
+- OpenShift4クラスターへのログイン ([2-2](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-2-ocp4%E3%81%B8%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3))
+- プロジェクト(openshift-console)のリソース利用状況の確認 ([2-3-1](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-3-1-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E5%88%A9%E7%94%A8%E7%8A%B6%E6%B3%81%E3%81%AE%E7%A2%BA%E8%AA%8D))
+- クラスターを構成するNodeの確認 ([2-3-2](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-3-2-%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8Bnode%E3%81%AE%E7%A2%BA%E8%AA%8D))
+- K8sワークロード の動作確認 ([2-3-3](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-3-3-k8s%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%89-%E3%81%AE%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D-oc%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E4%BD%BF%E7%94%A8))
 
 ## 2-1. 諸注意
 ### 2-1-1. OpenShift4へのログイン方法
