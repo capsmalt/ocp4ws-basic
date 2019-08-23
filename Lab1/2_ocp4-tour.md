@@ -292,6 +292,122 @@ ocコマンドを使用して，K8sワークロードの動作状況を確認し
 >ocコマンドでのログイン方法が分からない場合は，[2-2-1. ocコマンドによるログイン(oc login)](2_ocp4-tour.md#2-2-1-oc%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AB%E3%82%88%E3%82%8B%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3oc-login)を参照ください。
 >
 
+1. クラスターに含まれるプロジェクトを一覧します。
+
+    ```
+    $ oc get project
+
+    NAME                                                    DISPLAY NAME   STATUS
+    default                                                                Active
+    kube-public                                                            Active
+    kube-system                                                            Active
+    openshift                                                              Active
+    openshift-apiserver                                                    Active
+    openshift-apiserver-operator                                           Active
+    openshift-authentication                                               Active
+    openshift-authentication-operator                                      Active
+    openshift-cloud-credential-operator                                    Active
+    openshift-cluster-machine-approver                                     Active
+    openshift-cluster-node-tuning-operator                                 Active
+    openshift-cluster-samples-operator                                     Active
+    openshift-cluster-storage-operator                                     Active
+    openshift-cluster-version                                              Active
+    openshift-config                                                       Active
+    openshift-config-managed                                               Active
+    openshift-console                                                      Active
+    openshift-console-operator                                             Active
+    openshift-controller-manager                                           Active
+    openshift-controller-manager-operator                                  Active
+    openshift-dns                                                          Active
+    openshift-dns-operator                                                 Active
+    openshift-etcd                                                         Active
+    openshift-image-registry                                               Active
+    openshift-infra                                                        Active
+    openshift-ingress                                                      Active
+    openshift-ingress-operator                                             Active
+    openshift-kube-apiserver                                               Active
+    openshift-kube-apiserver-operator                                      Active
+    openshift-kube-controller-manager                                      Active
+    openshift-kube-controller-manager-operator                             Active
+    openshift-kube-scheduler                                               Active
+    openshift-kube-scheduler-operator                                      Active
+    openshift-machine-api                                                  Active
+    openshift-machine-config-operator                                      Active
+    openshift-marketplace                                                  Active
+    openshift-monitoring                                                   Active
+    openshift-multus                                                       Active
+    openshift-network-operator                                             Active
+    openshift-node                                                         Active
+    openshift-operator-lifecycle-manager                                   Active
+    openshift-operators                                                    Active
+    openshift-sdn                                                          Active
+    openshift-service-ca                                                   Active
+    openshift-service-ca-operator                                          Active
+    openshift-service-catalog-apiserver-operator                           Active
+    openshift-service-catalog-controller-manager-operator                  Active
+    user00-lab1-2                                                          Active
+    ```
+
+1. 2-3. で作成した自身のプロジェクトを検索し，操作対象として切替えます。
+
+    ```
+    $ oc get project | grep user00*
+
+    user00-lab1-2                                                          Active
+    ```
+
+    プロジェクトを切替えて操作してみましょう。
+    ```
+    $ oc project <自身のプロジェクト>
+    ```
+
+    >実行例)  
+    >```
+    >$ oc project user00-lab1-2
+    >
+    >Now using project "user00-lab1-2" on server "https://api.group00-ocp4ws-basic.capsmalt.org:6443".
+    >```
+
+    >Tips:
+    >` $ oc project` でプロジェクトしておくことで，`-n user00-lab1-2` のようにネームスペース指定をする必要が無くなるため幾分便利になります。  
+    > ※ただし，本ハンズオンの実行例においては，`$ oc project <プロジェクト名>` の実行有無に関係無く `-n` オプションを付与しています。  
+
+1. 自身のプロジェクト内のワークロードを確認します。
+    > コマンド実行時は，`-n <各自のプロジェクト名>` に読み替えてください。
+
+    ```
+    $ oc get po -n user00-lab1-2
+    No resources found.
+
+    $ oc get deploy -n user00-lab1-2    
+    No resources found.
+
+    $ oc get svc -n user00-lab1-2
+    No resources found.
+    ```
+
+    自身のプロジェクトでは，まだ何もK8sワークロードを作成していないため，上記例の通り "No resource found." が出力されます。
+    
+1. openshift-console プロジェクト のワークロードを確認します。
+
+    >```
+    >$ oc get po -n openshift-console
+    >NAME                         READY   STATUS    RESTARTS   AGE
+    >console-855bff5f9c-rhnmm     1/1     Running   0          16h
+    >console-855bff5f9c-xvttg     1/1     Running   1          16h
+    >downloads-5dc69d497c-7kvxb   1/1     Running   0          16h
+    >downloads-5dc69d497c-dxvz7   1/1     Running   0          16h
+    >
+    >$ oc get deploy -n openshift-console
+    >NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+    >console     2/2     2            2           16h
+    >downloads   2/2     2            2           16h
+    >
+    >$ oc get svc -n openshift-console
+    >NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+    >console     ClusterIP   172.30.159.179   <none>        443/TCP   16h
+    >downloads   ClusterIP   172.30.220.192   <none>        80/TCP    16h
+  
 ---
 以上で，OCP4クラスターへのログインと動作確認は完了です。  
 次に [コンテナイメージのビルドとデプロイ](3_ocp4-build-deploy.md) のハンズオンに進みます。
