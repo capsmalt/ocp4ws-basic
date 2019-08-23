@@ -373,23 +373,24 @@ ocコマンドを使用して，K8sワークロードの動作状況を確認し
     
 1. openshift-console プロジェクト のワークロードを確認します。
 
-    >```
-    >$ oc get po -n openshift-console
-    >NAME                         READY   STATUS    RESTARTS   AGE
-    >console-855bff5f9c-rhnmm     1/1     Running   0          16h
-    >console-855bff5f9c-xvttg     1/1     Running   1          16h
-    >downloads-5dc69d497c-7kvxb   1/1     Running   0          16h
-    >downloads-5dc69d497c-dxvz7   1/1     Running   0          16h
-    >
-    >$ oc get deploy -n openshift-console
-    >NAME        READY   UP-TO-DATE   AVAILABLE   AGE
-    >console     2/2     2            2           16h
-    >downloads   2/2     2            2           16h
-    >
-    >$ oc get svc -n openshift-console
-    >NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
-    >console     ClusterIP   172.30.159.179   <none>        443/TCP   16h
-    >downloads   ClusterIP   172.30.220.192   <none>        80/TCP    16h
+    ```
+    $ oc get po -n openshift-console
+    NAME                         READY   STATUS    RESTARTS   AGE
+    console-855bff5f9c-rhnmm     1/1     Running   0          16h
+    console-855bff5f9c-xvttg     1/1     Running   1          16h
+    downloads-5dc69d497c-7kvxb   1/1     Running   0          16h
+    downloads-5dc69d497c-dxvz7   1/1     Running   0          16h
+    
+    $ oc get deploy -n openshift-console
+    NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+    console     2/2     2            2           16h
+    downloads   2/2     2            2           16h
+    
+    $ oc get svc -n openshift-console
+    NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+    console     ClusterIP   172.30.159.179   <none>        443/TCP   16h
+    downloads   ClusterIP   172.30.220.192   <none>        80/TCP    16h
+    ```
 
 ocコマンドは，Kubernetesを拡張したOpenShift4の制御をシンプルに行うために用意されているCLIですが，kubectlと同じ制御が行えます。例えば，`$ kubectl describe po`と同じ操作を `$ oc describe po` で行えます。余談ですが，もちろんkubectlコマンドをOpenShift4で使うこともできます。  
 
