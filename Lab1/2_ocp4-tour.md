@@ -408,7 +408,9 @@ ocコマンドを使用して，K8sワークロードの動作状況を確認し
     >console     ClusterIP   172.30.159.179   <none>        443/TCP   16h
     >downloads   ClusterIP   172.30.220.192   <none>        80/TCP    16h
 
-ocコマンドは，Kubernetesを拡張したOpenShiftの制御をシンプルに行うために用意されているCLIですが，もちろんkubectlと同じ制御が行えます。例えば，`$ kubectl describe po`と同じ操作を `$ oc describe po` で行えます。OpenShiftによって拡張された機能については，次のハンズオン[コンテナイメージのビルドとデプロイ](3_ocp4-build-deploy.md)で体験できます。
+ocコマンドは，Kubernetesを拡張したOpenShiftの制御をシンプルに行うために用意されているCLIですが，kubectlと同じ制御が行えます。例えば，`$ kubectl describe po`と同じ操作を `$ oc describe po` で行えます。余談ですが，もちろんkubectlコマンドをOpenShiftで使うこともできます。  
+
+OpenShiftによって拡張された機能については，次のハンズオン[コンテナイメージのビルドとデプロイ](3_ocp4-build-deploy.md)で体験できます。  
 
 ---
 以上で，OCP4クラスターへのログインと動作確認は完了です。  
