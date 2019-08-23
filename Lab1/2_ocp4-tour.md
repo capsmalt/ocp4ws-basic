@@ -271,15 +271,15 @@ group00-ocp4ws-basic-b9qqj-worker-ap-northeast-1a-t6rgd` や `group00-ocp4ws-bas
     
     ![](images/ocp4-compute-nodes-worker_action.png)
 
-    ラベルやアノテーションの変更をUIから簡易的に行えます。  
+    ラベルやアノテーションの変更をUIから簡易的に行えます。(今回は参照のみ)  
     ![](images/ocp4-compute-nodes-edit-label.png)
 
     ![](images/ocp4-compute-nodes-edit-annotation.png)
 
-    Node構成について，yamlを直接編集して変更が行えます。  
+    Node構成について，yamlを直接編集して変更が行えます。(今回は参照のみ)  
     ![](images/ocp4-compute-nodes-edit-node.png)
     
-    [Mark as Unschedulable] を選択することで，今後新しいPodが該当Nodeにスケジューリングされないように設定できます。  
+    [Mark as Unschedulable] を選択することで，今後新しいPodが該当Nodeにスケジューリングされないように設定できます。(今回は参照のみ)  
     ![](images/ocp4-compute-nodes-unschedulable.png)    
 
 コンソール上で，OpenShift4クラスターを構成するNodeの数や種類，付与されたラベル，リソース利用状況，あるNode上で動作中のPod，Nodeの構成変更，などについて確認しました。
@@ -407,7 +407,9 @@ ocコマンドを使用して，K8sワークロードの動作状況を確認し
     >NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
     >console     ClusterIP   172.30.159.179   <none>        443/TCP   16h
     >downloads   ClusterIP   172.30.220.192   <none>        80/TCP    16h
-  
+
+ocコマンドは，Kubernetesを拡張したOpenShiftの制御をシンプルに行うために用意されているCLIですが，もちろんkubectlと同じ制御が行えます。例えば，`$ kubectl describe po`と同じ操作を `$ oc describe po` で行えます。OpenShiftによって拡張された機能については，次のハンズオン[コンテナイメージのビルドとデプロイ](3_ocp4-build-deploy.md)で体験できます。
+
 ---
 以上で，OCP4クラスターへのログインと動作確認は完了です。  
 次に [コンテナイメージのビルドとデプロイ](3_ocp4-build-deploy.md) のハンズオンに進みます。
