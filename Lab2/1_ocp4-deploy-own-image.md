@@ -7,6 +7,15 @@
   - cri-o + buildah環境(RHEL8)が必要
 
 ### 1-1-2. 事前準備
+- 踏み台サーバー(Bastion Server)へのアクセス情報
+- OpenShift4クラスターへのアクセス情報
+
+>自身でハンズオンを実施される場合は，事前に以下を準備ください。
+> - OpenShift4クラスター環境
+> - ocコマンドのセットアップ
+>   - 自身のクラスターバージョンに合わせたクライアントを使用します
+>   - https://mirror.openshift.com/pub/openshift-v4/clients/ocp/
+
 ## 1-2. 既存コンテナイメージをOpenShift4にデプロイ
 Lab1ではソースコードとbuidler imageを合体させてコンテナイメージを作成し，OpenShift4上にデプロイしました。  
 Lab2の最初のステップでは，**既にコンテナイメージ化済**のターミナルアプリケーションをOpenShift4上にデプロイする手順を実施します。
