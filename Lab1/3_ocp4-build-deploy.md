@@ -125,7 +125,7 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
 
     ![](images/ocp4-lab1-3-blog-create-route.png)
 
-1. **Route名**，対象アプリ用の**Service**，**Port** を指定します。
+1. **Router**，対象アプリ用の**Service**，**Port** を指定します。
     - Name: `(例: blog-user00)`
     - Service: `blog-user00`
     - Target Port: `8080 → 8080(TCP)`
@@ -142,31 +142,37 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
 
     >Tips:
     >
-    >作成したRouteを参照する場合は，[Networking] > [Routes] > [ルート名] のように辿ることで確認できます。  
+    >作成したRouteを参照する場合は，[Networking] > [Routes] > [Router名] のように辿ることで確認できます。 
     >
+    >![](images/ocp4-lab1-3-blog-route-detail.png)
     
 ### 3-3-5. アプリケーションの動作確認
-1. Networking > Routes > ルート名 を選択し，Location欄にあるリンクを開きます
-    例: `http://mypyroute-myprj.apps.OpenShift41-ipi-0611.k8show.net`
+1. [Networking] > [Routes] を選択し，blog用のRouter(例: `blog-user00`)行にある **Location欄のリンク** を開きます。
+    例) `http://blog-user00-blog-user00.apps.group00-ocp4ws-basic.capsmalt.org`
 
-    ![](images/access_application.png)
+    ![](images/ocp4-lab1-3-blog-confirm-app.png)
 
-1. Pythonアプリのサンプルページが表示されることを確認します
+1. blogアプリのサンプルページに自身のPod名が表示されていることを確認します。
 
-    ![](images/access_application_result.png)
- 
-## 3-4. [Trial works] - OpenShift4上にアプリをデプロイ
+    ![](images/ocp4-lab1-3-blog-confirm-app-result.png)
+    
+    Pod名が分からない場合は，[Workloads] > [Pods] のPod一覧から確認しましょう。  
+    
+    ![](images/ocp4-lab1-3-blog-confirm-app-pod.png)
+
+
+## 3-4. [Trial works] - OpenShift4クラスターに他アプリケーションをデプロイ
 お題: 
 
-「**PythonのBlogアプリをS2Iビルドしてみよう**」
+「**OpenShift4クラスターに他アプリケーションをS2Iでビルド&デプロイしてみよう**」
 
 コンテンツ:
 
 ```
-- Project名(NameSpace): blog-<yourID>
-- BaseImage(BuilderImage): Python 3.5
-- Git Repository: https://github.com/openshift-katacoda/blog-django-py
-- Routes名: blog
+- Project名(NameSpace): trial-<yourID>
+- BaseImage(BuilderImage): Python 3.6
+- Git Repository: https://github.com/sclorg/django-ex
+- Routes名: trial-<yourID>
 ```
 
 ---
