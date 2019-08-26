@@ -130,6 +130,8 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
     - Service: `blog-user00`
     - Target Port: `8080 → 8080(TCP)`
     
+    ![](images/ocp4-lab1-3-blog-create-route-2.png)
+    
     >Tips:
     >
     >「あれ？Service作ったっけ？」と思われた方，その感覚は正しいです。明示的には作成していません。  
