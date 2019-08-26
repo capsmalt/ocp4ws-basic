@@ -81,13 +81,14 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
 ヒント:
 
 ```
-- 既存Project名(Namespace): <yourID>
-- ContainerImage: quay.io/openshiftlabs/workshop-terminal:2.10.2
-- 新規デプロイ時に指定する名前: <yourID>-workshop-terminal
-- Service名: <yourID>-workshop-terminal
-  - Routeからの振り先Service
-- Route名: workshop-terminal
-  - 振り先を指定する
+- プロジェクト名(既存): workshop-terminal-<yourID> (例: workshop-terminal-user00)
+- ContainerImage(新規): quay.io/openshiftlabs/workshop-terminal:2.10.2
+- アプリ名(新規): workshop-terminal-2102
+- Service名(アプリ名と同じ名前で自動生成): workshop-terminal-2102
+  - (このServiceをRouterからの新しい振り先に指定すると良さそう...)
+- Router名(既存): workshop-terminal
+  - 既存のRouterの振り先を変更してみる
+  - ([Networking] > [Routes] > [workshop-terminal] > [YAML] の "spec.to.name" あたりが怪しい...)
 ```
 
 ---
