@@ -11,18 +11,26 @@
 ## 2-2. OpenShift4上でのJenkinsビルドパイプラインの利用
 今回はCLI操作をメインに使用して進めてみましょう。
 
+ocコマンドを使用して，クラスターにログインします。
+
+`$ oc login <OpenShift_API>` 
+
+>
+>ocコマンドでのログイン方法が分からない場合は，[2-2-1. ocコマンドによるログイン(oc login)](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-2-1-oc%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AB%E3%82%88%E3%82%8B%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3oc-login)を参照ください。
+>
+
 ### 2-2-1. Jenkinsコンテナのインストール
-1. 自身用の新規プロジェクトを作成します  **(例: user01a-jenkins)**
+1. 新規プロジェクトを作成します。  **(例: jenkins-user00)**
 
     ```
-    $ oc new-project user01a-jenkins (<== ご自身のプロジェクト名)
+    $ oc new-project jenkins-user00 (<== ご自身のプロジェクト名)
     $ oc project
-    Using project "user01a-jenkins" on server XXXXXXX
+    Using project "jenkins-user00" on server XXXXXXX
     
     上記のように出力確認できればOKです
     ```
     
-1. Jenkinsテンプレートを使用してJenkinsのインスタンスをデプロイします
+1. Jenkinsテンプレートを使用してJenkinsのインスタンスをデプロイします。
 
     ```
     $ oc get templates -n openshift
@@ -31,16 +39,16 @@
     jenkins-ephemeral: 永続化なし <== 今回はこちらを使用
     jenkins-persistent: 永続化あり
 
-    $ oc new-app jenkins-ephemeral -n user01a-jenkins  # -n 作成したプロジェクト名
+    $ oc new-app jenkins-ephemeral -n jenkins-user00  # -n 作成したプロジェクト名
     $ oc get pods
     $ oc project
     ```
 
 ### 2-2-2. Jenkinsへのパイプライン設定を構成
-1. Jenkinsにパイプライン設定(nodejs-sample-pipeline)を入れます
+1. Jenkinsにパイプライン設定(nodejs-sample-pipeline)を入れます。
 
     ```
-    $ oc create -f https://raw.githubusercontent.com/openshift/origin/master/examples/jenkins/pipeline/nodejs-sample-pipeline.yaml
+    $ oc create -f https://raw.githubusercontent.com/openshift/origin/master/examples/jenkins/pipeline/nodejs-sample-pipeline.yaml -n jenkins-user00
     
     $ oc get buildconfigs
     nodejs-sample-pipeline  # oc createで作成されたPipeline
@@ -48,48 +56,74 @@
     $ oc get buildconfig/nodejs-sample-pipeline -o yaml　# 中身を確認
 
 ### 2-2-3. ビルドパイプラインの実行
-1. パイプラインを使用してビルドします
+1. パイプラインを使用してビルドします。
 
     ```
     $ oc start-build nodejs-sample-pipeline
     ```
 
 ## 2-2-4. ビルドパイプラインの動作確認
-1. JenkinsのUIに接続してパイプラインの進捗状況を確認します
+1. JenkinsのUIに接続してパイプラインの進捗状況を確認します。
 
     ```
     $ oc get route
-    出力結果のLocation情報をコピーしてブラウザで確認します
+    NAME                     HOST/PORT                                                                      PATH   SERVICES                 PORT    TERMINATION     WILDCARD
+    jenkins                  jenkins-jenkins-user00.apps.group00-ocp4ws-basic.capsmalt.org                         jenkins                  <all>   edge/Redirect   None
     ```
     
-    OpenShift4のログイン情報を使用してJenkinsのUIにログインします
+    上記出力結果の "HOST/PORT" の情報をコピーして，ブラウザのURL欄にペーストして確認します。  
+    (例: `jenkins-jenkins-user00.apps.group00-ocp4ws-basic.capsmalt.org`)
+
+    OpenShift4のログイン情報を使用してJenkinsのUIにログインします。
     
     ![](images/jenkins_login_1.png)
     
-    htpasswdを選択し，その後ログイン情報を入力します(例: user00/ocppass)
+    **自身のプロジェクト名** を選択します。(例: jenkins-user00)
     
-    ![](images/jenkins_login_2.png)
-    
-    **自身のプロジェクト名** を選択します(例: user00-jenkins)
-    
-    ![](images/jenkins_ui_1.png)
+    ![](images/ocp4-lab2-2-jenkins-pipeline-1.png)
 
-    **プロジェクト名/パイプライン名** を選択します (例: user00-jenkins/nodejs-sample-pipeline)
+    **プロジェクト名/パイプライン名** を選択します (例: jenkins-user00/nodejs-sample-pipeline)
     
-    ![](images/jenkins_ui_2.png)
+    ![](images/ocp4-lab2-2-jenkins-pipeline-2.png)
 
     時間経過とともにパイプラインのステージがだんだん右側に伸びていくことが確認できます
 
-    ![](images/jenkins_pipeline.png)
+    ![](images/ocp4-lab2-2-jenkins-pipeline-3.png)
+
+    一番右端まで到達し，オールグリーンであれば成功です。  
+    
+    ![](images/ocp4-lab2-2-jenkins-pipeline-4.png)
+    
 
     ※パイプラインのステージの書き方は，前述の `oc get buildconfig/nodejs-sample-pipeline -o yaml`で確認できます
 
+1. デプロイされたアプリケーションを確認しましょう。
+
+    接続先となるRouterの情報を確認します。
+
+    ```
+    $ oc get route
+NAME                     HOST/PORT                                                                      PATH   SERVICES                 PORT    TERMINATION     WILDCARD
+jenkins                  jenkins-jenkins-user00.apps.group00-ocp4ws-basic.capsmalt.org                         jenkins                  <all>   edge/Redirect   None
+nodejs-mongodb-example   nodejs-mongodb-example-jenkins-user00.apps.group00-ocp4ws-basic.capsmalt.org          nodejs-mongodb-example   <all>                   None
+    ```
+
+    上記出力結果の "HOST/PORT" の情報をコピーして，ブラウザのURL欄にペーストして確認します。  
+    (例: `nodejs-mongodb-example-jenkins-user00.apps.group00-ocp4ws-basic.capsmalt.org`)  
+
+    ![](images/ocp4-lab2-2-jenkins-pipeline-nodejs-app-confirm.png)
+    
+    
 >Tips:
 >
->ちなみに，Lab1ではOpenShift4コンソール上でGUI操作で上記と同様の作業を行っていました。
->具体的には，**カタログ(Developer Catalog)** からPythonテンプレートを選択して，ソースコードとbuilder image(Python)を合体させることでコンテナイメージを作成し，デプロイしていました。
+>Lab2では，主にCLIを用いてプロジェクト作成やアプリケーション作成，動作確認などの操作を行いました。  
+>Jenkinsテンプレートを使用したJenkinsインスタンスのデプロイを行っていました。  
 >
->また，OpenShift4ではJenkinsに限らず，ランタイムや他ミドルウェア，ソフトウェアなど多数のテンプレートを用意しています。自身(自社)でよく使うテンプレートを自作してカタログ上に追加することも可能です。その場合は，S2Iスクリプトを書く必要があります。
+>ちなみに，Lab1では主にOpenShift4コンソール上(GUI)操作を使用しました。  
+>**カタログ(Developer Catalog)** からPythonテンプレートを選択して，ソースコードとbuilder image(Python)を合体させることでコンテナイメージを作成し，デプロイしていました。  
+>
+>このように，OpenShift4ではCLI/GUI双方で同じ操作が行えます。また，JenkinsやPythonに限らず，ランタイムや他ミドルウェア，ソフトウェアなど多数のテンプレートを用意しています。自身(自社)でよく使うテンプレートを自作してカタログ上に追加することも可能です。  
+> その場合は，S2Iスクリプトを書く必要があります。
 
 ---
 以上で，Jenkinsベースのビルドパイプラインの利用は完了です。  
