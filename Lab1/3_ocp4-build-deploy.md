@@ -55,7 +55,7 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
     ![](images/ocp4-lab1-3-create-project-result.png)
 
 ### 3-3-2. カタログでソースを指定してビルド&デプロイ
-1. [Catalog] > [Developer Catalog] > [Python] テンプレート を選択します
+1. [Catalog] > [Developer Catalog] > [Python] テンプレート を選択します。
 
     ![](images/ocp4-lab1-3-devcatalog-python.png)
 
@@ -138,7 +138,7 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
     >Tips:
     >
     >「あれ？Service作ったっけ？」と思われた方，その感覚は正しいです。明示的には作成していません。  
-    >今回は3-3-2の手順で，Pythonテンプレートでblogアプリケーションをデプロイした際に，Podだけでなく，"Service" も同時に作成されています。
+    >今回は[3-3-2の手順](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/3_ocp4-build-deploy.md#3-3-2-%E3%82%AB%E3%82%BF%E3%83%AD%E3%82%B0%E3%81%A7%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E3%83%93%E3%83%AB%E3%83%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4) で，Pythonテンプレートでblogアプリケーションをデプロイした際に，Podだけでなく，"Service" も同時に作成されています。
     >その際，Service名はアプリ名と同じ名前が指定されています。
     >
     >Developer Catalogで選択したテンプレートは，Kubernetes上でアプリを動作させるために必ず必要になるリソース(PodやServiceなど)や，便利にアプリケーションを管理できるようにするための仕組みを一挙に作成できるように用意されています。
