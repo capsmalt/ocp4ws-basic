@@ -18,49 +18,60 @@
 
 ## 1-2. 既存コンテナイメージをOpenShift4にデプロイ
 Lab1ではソースコードとbuidler imageを合体させてコンテナイメージを作成し，OpenShift4上にデプロイしました。  
-Lab2の最初のステップでは，**既にコンテナイメージ化済**のターミナルアプリケーションをOpenShift4上にデプロイする手順を実施します。
+Lab2の最初のステップでは，**既にコンテナイメージ化済** のターミナルアプリケーションをOpenShift4上にデプロイする手順を実施します。
 
-1. プロジェクトを選択します
+### 1-2-1. プロジェクト(Namespace)の作成
+OpenShift4コンソールで各自のプロジェクトを作成しましょう。  
+
+1. [Home] > [Projects] > [Create Project] を選択します。  
+
+    ![](images/ocp4-lab2-1-create-project.png)
+
+1. プロジェクト名(例: `workshop-terminal-user00` )を指定し，**Create** を選択します。  
     
-    プロジェクトは，**必ずご自身のログイン時のユーザー名 (例: "user01a")** のものを選択してください。    
-    Home > Project > user01a (例)
-    
-    ![](images/create_application_using_existedImage_1.png)
+    プロジェクト名には，**必ずご自身のログイン時のユーザー名 (例: "workshop-terminal-user00")** を指定してください。  
+    複数人でクラスターを共有しているため，他の人と重複しないプロジェクト名を指定する必要があります。  
 
-1. **Add > Deploy Image** のように選択します
+    ![](images/ocp4-lab2-1-create-project-workshop-terminal.png)
 
-    ![](images/create_application_using_existedImage_2.png)
+1. **Add > Deploy Image** のように選択します。
 
-1. **Namespace**(プロジェクト名)，と**Image Name** を指定します
-    - Namespace: `各自の作成済プロジェクト(例: user01a)`
+    ![](images/ocp4-lab2-1-create_application_using_existedImage.png)
+
+1. **Namespace**(プロジェクト名)，と**Image Name** を指定します。
+    - Namespace: `各自の作成済プロジェクト(例: workshop-terminal-user00)`
     - Image Name: `quay.io/openshiftlabs/workshop-terminal:2.4.0`
 
-    ![](images/create_application_using_existedImage_3.png)
+    ![](images/ocp4-lab2-1-create_application_using_existedImage-2.png)
 
-1. **検索ボタン** をクリックし，Name(workshop-terminal)を確認して，**Deploy** を選択します
+1. **検索ボタン** をクリックし，Name(workshop-terminal)を確認して，**Deploy** を選択します。
 
-    ![](images/create_application_using_existedImage_4.png)
+    ![](images/ocp4-lab2-1-create_application_using_existedImage-3.png)
 
 ## 1-3. Routerの作成と動作確認
 ### 1-3-1. 外部アクセスのためのRouterを作成
-1. 外部からアクセスするための **Route** を作成します
+現在のworkshop-terminalアプリケーションは，OpenShift4クラスター内に閉じた状態ですので，外部からアクセスできるように Router を作成しましょう。  
 
-    Networking > Routes > Create Route を選択し，以下を指定した後 **Create** を選択します
-    - Name: `Route名(例: workshop-terminal)`
-    - Service: `対象アプリ用のService(例: workshop-terminal)`
+1. [Networking] > [Routes] > [Create Route] を選択します。
+
+    ![](images/ocp4-lab2-1-workshop-terminal-create-route.png)
+
+1. **Router**，対象アプリ用の**Service**，**Port** を指定します。
+    - Name: `任意の名前 (例: workshop-terminal)`
+    - Service: `指定済のアプリ名 (例: workshop-terminal)`
     - Target Port: `10080 → 10080(TCP)`
-
-    ![](images/create_route_for_existedImage.png)
+    
+    ![](images/ocp4-lab2-1-workshop-terminal-create-route-2.png)
 
 ### 1-3-2. アプリケーションの動作確認
-1. Location欄にあるリンクを開きます
-    例: `http://workshop-terminal-myprj.apps.OpenShift41-ipi-0611.k8show.net`
+1. [Networking] > [Routes] を選択し，workshop-terminal用のRouter(例: `workshop-terminal`)行にある **Location欄のリンク** を開きます。
+    例) `http://workshop-terminal-workshop-terminal-user00.apps.group00-ocp4ws-basic.capsmalt.org`
 
-    ![](images/create_route_for_existedImage_result.png)
+    ![](images/ocp4-lab2-1-workshop-terminal-confirm-app.png)
 
-1. Terminalアプリが表示されることを確認します
+1. Terminalアプリが表示されることを確認します。
 
-    ![](images/create_route_for_existedImage_result_2.png)
+    ![](images/ocp4-lab2-1-workshop-terminal-confirm-app-result.png)
 
 ## 1-4. [Trial works] - OpenShift4上にアプリをデプロイ2
 お題: 
