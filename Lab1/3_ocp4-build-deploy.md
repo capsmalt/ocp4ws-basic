@@ -41,7 +41,7 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
 
 1. プロジェクト名(例: `blog-user00` )を指定し，**Create** を選択します。  
     
-    プロジェクト名には，**必ずご自身のログイン時のユーザー名 (例: "user00-lab1-3")** を指定してください。  
+    プロジェクト名には，**必ずご自身のログイン時のユーザー名 (例: "blog-user00")** を指定してください。  
     複数人でクラスターを共有しているため，他の人と重複しないプロジェクト名を指定する必要があります。  
 
     ![](images/ocp4-lab1-3-create-project-blog.png)
@@ -99,33 +99,53 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
     >![](images/ocp4-lab1-3-blog-pods-status-1of1.png)  
     >
     
-### 3-3-3. blogアプリケーションのデプロイ状況を確認
+### 3-3-3. blogアプリケーションの状態を確認
 1. [Workloads] > [Pods] > [blog-user00(指定したアプリ名)] のように選択します。
 
-    ![](images/developer_catalog_deploy_pod_result_1.png)
+    ![](images/ocp4-lab1-3-blog-pods.png)
 
-    少し待つと，下図のように **"1 of 1 pods"** のように正常に動作した状態を確認できます。
+    コンテナが作成され，起動していると以下のように表示されます。  
     
-    ![](images/developer_catalog_deploy_pod_result_2.png)
+    ![](images/ocp4-lab1-3-blog-pods-status.png)
 
+    >Tips:  
+    >以前の手順で[プロジェクトのリソース状況を確認 (2-3-1)](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/2_ocp4-tour.md#2-3-1-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E5%88%A9%E7%94%A8%E7%8A%B6%E6%B3%81%E3%81%AE%E7%A2%BA%E8%AA%8D)した時と同じようにPrometheus(+Grafana)のモニタリング状況を確認したり，yaml定義の確認，Eventの確認などができます。  
+    >
+    >さらに，Pod内のコンテナ内でコマンド実行も行えます。  
+    >以下図のように [Terminal] を選択するとブラウザ上でターミナル内操作が行なえます。  
+    >
+    >![](images/ocp4-lab1-3-blog-pods-terminal.png)
+    >
+    >Pod内に複数コンテナが存在する場合はプルダウンメニューで選択するだけでコンテナを切替えてターミナル操作が可能です。問題判別を行う際には，手間を省いてくれる意外と嬉しい機能です。
 
+### 3-3-4. 外部からアクセスするための Route を作成
+現在のblogアプリケーションは，OpenShift4クラスター内に閉じた状態ですので，外部からアクセスできるように Router を作成しましょう。  
 
-### 3-3-3. 外部からアクセスするための Route を作成
-1. Networking > Routes > Create Route を選択します
+1. [Networking] > [Routes] > [Create Route] を選択します。
 
+    ![](images/ocp4-lab1-3-blog-create-route.png)
 
-
-1. **Route名**，対象アプリ用の**Service**，**Port** を指定します
-    - Name: **`ログイン時に使用したご自身のユーザー名 (例: user01a)`**
-    - Service: `mypyapp`
+1. **Route名**，対象アプリ用の**Service**，**Port** を指定します。
+    - Name: `(例: blog-user00)`
+    - Service: `blog-user00`
     - Target Port: `8080 → 8080(TCP)`
-1. 最後に **Create** を選択します
+    
+    >Tips:
+    >
+    >「あれ？Service作ったっけ？」と思われた方，その感覚は正しいです。明示的には作成していません。  
+    >今回は3-3-2の手順で，Pythonテンプレートでblogアプリケーションをデプロイした際に，Podだけでなく，"Service" も同時に作成されています。
+    >
+    >テンプレートは，必ず必要になるリソースや，便利にアプリケーションを管理できるようにするための仕組みを一挙に作成できるように用意されています。
+    >
+    
+1. 最後に **Create** を選択します。
 
     >Tips:
     >
-    >Networking > Routes > ルート名 のように辿ることで確認できます。
-
-### 3-3-4. アプリケーションの動作確認
+    >作成したRouteを参照する場合は，[Networking] > [Routes] > [ルート名] のように辿ることで確認できます。  
+    >
+    
+### 3-3-5. アプリケーションの動作確認
 1. Networking > Routes > ルート名 を選択し，Location欄にあるリンクを開きます
     例: `http://mypyroute-myprj.apps.OpenShift41-ipi-0611.k8show.net`
 
