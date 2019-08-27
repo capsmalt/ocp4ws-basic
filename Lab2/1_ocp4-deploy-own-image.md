@@ -90,16 +90,15 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
 
 ヒント:
 
-```
-- プロジェクト名(既存): workshop-terminal-<yourID> (例: workshop-terminal-user00)
-- ContainerImage(新規): quay.io/openshiftlabs/workshop-terminal:2.10.2
-- アプリ名(新規): workshop-terminal-2102
-- Service名(アプリ名と同じ名前で自動生成): workshop-terminal-2102
+
+- プロジェクト名(既存): `workshop-terminal-<yourID>` (例: `workshop-terminal-user00`)
+- ContainerImage(新規): `quay.io/openshiftlabs/workshop-terminal:2.10.2`
+- アプリ名(新規): `workshop-terminal-2102`
+- Service名(アプリ名と同じ名前で自動生成): `workshop-terminal-2102`
   - (このServiceをRouterからの新しい振り先に指定すると良さそう...)
-- Router名(既存): workshop-terminal
+- Router名(既存): `workshop-terminal`
   - 既存のRouterの振り先を変更してみる
-  - ([Networking] > [Routes] > [workshop-terminal] > [YAML] の "spec.to.name" あたりが怪しい...)
-```
+  - ([Networking] > [Routes] > [workshop-terminal] > [YAML] の `"spec.to.name"` あたりが怪しい...)
 
 ---
 以上で，既存のコンテナイメージのデプロイは完了です。  
