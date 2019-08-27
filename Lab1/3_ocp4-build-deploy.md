@@ -1,4 +1,5 @@
 # 3. コンテナイメージのビルドとデプロイ
+アプリケーションをOpenShift4クラスターで動作させます。Developer Catalogのテンプレートを使用してアプリケーションをデプロイします。
 
 - A) 新規プロジェクトの作成 [(3-3-1)](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/3_ocp4-build-deploy.md#3-3-1-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88namespace%E3%81%AE%E4%BD%9C%E6%88%90)
 - B) カタログからデプロイ [(3-3-2)](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab1/3_ocp4-build-deploy.md#3-3-2-%E3%82%AB%E3%82%BF%E3%83%AD%E3%82%B0%E3%81%A7%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E3%83%93%E3%83%AB%E3%83%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4)
