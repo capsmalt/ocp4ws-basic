@@ -9,7 +9,13 @@
 ![](images/ocp4-Lab2-1_overview.png)
 
 ## 1-1. 諸注意
-### 1-1-1. 既存コンテナイメージをデプロイする方法について
+### 1-1-1. 既存コンテナイメージについて
+ここでいう "既存コンテナイメージ" は以下の2つが結合済のイメージのことを指しています。  
+- アプリケーションコード
+- Builder Image
+
+![](images/ocp4-about-existed-image.png)
+
 - 既存コンテナイメージ -> OpenShift4上にデプロイ
 - Dockerfile -> コンテナイメージビルド -> OpenShift4上にデプロイ
   - s2ibuildできる環境が必要
