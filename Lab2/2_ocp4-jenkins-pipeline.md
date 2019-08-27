@@ -1,6 +1,14 @@
 # 2. Jenkinsベースのビルドパイプラインの利用
 自動化ツールとして有名なOSSのJenkinsを使ったビルドパイプラインを体験してみましょう。
 
+- A) プロジェクトの作成 ([2-2-1_1](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab2/2_ocp4-jenkins-pipeline.md#2-2-1-jenkins%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB))
+- B) Jenkinsインスタンスのデプロイ ([2-2-1_2](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab2/2_ocp4-jenkins-pipeline.md#2-2-1-jenkins%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB))
+- C) Build Configの展開 ([2-2-2](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab2/2_ocp4-jenkins-pipeline.md#2-2-2-jenkins%E3%81%B8%E3%81%AE%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3%E8%A8%AD%E5%AE%9A%E3%82%92%E6%A7%8B%E6%88%90))
+- D) Jenkins Pipelineの実行 ([2-2-3](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab2/2_ocp4-jenkins-pipeline.md#2-2-3-%E3%83%93%E3%83%AB%E3%83%89%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%AE%E5%AE%9F%E8%A1%8C))
+- E) Pipelineとアプリの動作確認 ([2-2-4](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab2/2_ocp4-jenkins-pipeline.md#2-2-4-%E3%83%93%E3%83%AB%E3%83%89%E3%83%91%E3%82%A4%E3%83%97%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%AE%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D))
+
+![](images/ocp4-Lab2-2_overview.png)
+
 ## 2-1. 諸注意
 ### 2-1-1. OpenShift4におけるデリバリーパイプラインについて
 - S2I (Source to Image)
@@ -62,7 +70,7 @@ ocコマンドを使用して，クラスターにログインします。
     $ oc start-build nodejs-sample-pipeline
     ```
 
-## 2-2-4. ビルドパイプラインの動作確認
+### 2-2-4. ビルドパイプラインの動作確認
 1. JenkinsのUIに接続してパイプラインの進捗状況を確認します。
 
     ```
