@@ -1,4 +1,13 @@
 # 1. 既存のコンテナイメージのデプロイ
+ビルド済(アプリケーションコードとビルダーイメージ(S2I BuilderImage)が結合済)の既存コンテナイメージをOpenShift4クラスターにデプロイします。
+
+- A) プロジェクトの作成 ([1-2-1](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab2/1_ocp4-deploy-own-image.md#1-2-1-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88namespace%E3%81%AE%E4%BD%9C%E6%88%90))
+- B) 既存コンテナイメージのデプロイ ([1-2-2]())
+- C) Routerの作成 ([1-3-1](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab2/1_ocp4-deploy-own-image.md#1-3-1-%E5%A4%96%E9%83%A8%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AErouter%E3%82%92%E4%BD%9C%E6%88%90))
+- B) アプリケーションの動作確認 ([1-3-2](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab2/1_ocp4-deploy-own-image.md#1-3-2-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D))
+
+![](images/ocp4-Lab2-1_overview.png)
+
 ## 1-1. 諸注意
 ### 1-1-1. 既存コンテナイメージをデプロイする方法について
 - 既存コンテナイメージ -> OpenShift4上にデプロイ
@@ -34,6 +43,7 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
 
     ![](images/ocp4-lab2-1-create-project-workshop-terminal.png)
 
+### 1-2-2. 既存コンテナイメージのデプロイ
 1. **Add > Deploy Image** のように選択します。
 
     ![](images/ocp4-lab2-1-create_application_using_existedImage.png)
