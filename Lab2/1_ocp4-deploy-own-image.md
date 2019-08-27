@@ -14,12 +14,7 @@
 - アプリケーションコード
 - Builder Image
 
-![](images/ocp4-about-existed-image.png)
-
-- 既存コンテナイメージ -> OpenShift4上にデプロイ
-- Dockerfile -> コンテナイメージビルド -> OpenShift4上にデプロイ
-  - s2ibuildできる環境が必要
-  - cri-o + buildah環境(RHEL8)が必要
+![](images/ocp4-lab2-1-about-existed-image.png)
 
 ### 1-1-2. 事前準備
 - 踏み台サーバー(Bastion Server)へのアクセス情報
