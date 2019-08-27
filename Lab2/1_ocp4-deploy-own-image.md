@@ -103,4 +103,4 @@ OpenShift4コンソールで各自のプロジェクトを作成しましょう�
 
 ---
 以上で，既存のコンテナイメージのデプロイは完了です。  
-次に [Jenkinsベースのビルドパイプラインの利用](2_OpenShift4-jenkins-pipeline.md) のハンズオンに進みます。
+次に [Jenkinsベースのビルドパイプラインの利用](https://github.com/capsmalt/ocp4ws-basic/blob/master/Lab2/2_ocp4-jenkins-pipeline.md) のハンズオンに進みます。
